@@ -1,6 +1,22 @@
 from bs4 import BeautifulSoup
 from lxml import etree
 import requests
+
+
+
+#------------------------------------------------------------------------------
+#  Copyright(c):
+#   Ubaidul Khan / ubaidul(dot)khan(at)gmail(dot)com
+#   
+#------------------------------------------------------------------------------
+#
+#
+#------------------------------------------------------------------------------
+#  References
+#   https://www.scrapingbee.com/blog/practical-xpath-for-web-scraping/
+#
+#------------------------------------------------------------------------------
+
   
   
 URL = "https://releases.ubuntu.com/23.04/"

@@ -82,14 +82,14 @@ def make_function_name_table(name):
     #func_name_dict = {'make_function_name_table':'mfnt', }
     func_name_dict[name] = acronym
   
-    print(f'|  \_(mfnt) Function name table: {func_name_dict}')
+    print(f'  | \_(mfnt) Function name table: {func_name_dict}')
 
   else:
     print(f'  | \-(mfnt) Nothing to process')
     to_return = None
 
   print(f'  +--------------------------------------------------------------------+')
-  print(f'  | ------------- generate_release_versions(grv) >>>>>>>>>>>>>')
+  print(f'  | ------------- make_function_name_table(mfnt) >>>>>>>>>>>>>')
   print(f'  +--------------------------------------------------------------------+')
 
   return(to_return) 
@@ -115,13 +115,13 @@ def stack_inspector():
   #
   ## Determine a name of the current function name & acronym
   my_name = curframe.f_code.co_name
-  print(f'|  \_(si) My name is: {my_name}')
+  print(f'  |  \_(si) My name is: {my_name}')
   make_function_name_table(my_name)
  
   #
   ## Determine a name of the parent function name & acronym
   my_parents_name = calframe[1][3]
-  print(f'|  \_(si) Function that called me: {my_parents_name}')
+  print(f'  | \_(si) Function that called me: {my_parents_name}')
   make_function_name_table(my_parents_name)
 
   #
@@ -135,7 +135,7 @@ def stack_inspector():
     my_great_grand_parent = calframe[3][3]
     
   except Exception as e:
-    print("|  \_(si) Range out of bounds - exiting")
+    print("  | \_(si) Range out of bounds - exiting")
 
   finally:
     return(my_parents_name, my_grand_parents_name, my_great_grand_parent)
@@ -143,7 +143,7 @@ def stack_inspector():
   # return(my_parents_name, my_grand_parents_name)
 
   print(f'  +--------------------------------------------------------------------+')
-  print(f'  | ------------- generate_release_versions(grv) >>>>>>>>>>>>>')
+  print(f'  | ------------- stack_inspector()(si) >>>>>>>>>>>>>')
   print(f'  +--------------------------------------------------------------------+')
 
   

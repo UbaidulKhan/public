@@ -16,6 +16,10 @@ import sys
 #   https://www.scrapingbee.com/blog/practical-xpath-for-web-scraping/
 #
 #------------------------------------------------------------------------------
+#
+# This script demonstrates web scraping using xpath
+#------------------------------------------------------------------------------
+
 
 
 url = "https://releases.ubuntu.com/"

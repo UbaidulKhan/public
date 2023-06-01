@@ -16,8 +16,9 @@ import requests
 #   https://www.scrapingbee.com/blog/practical-xpath-for-web-scraping/
 #
 #------------------------------------------------------------------------------
-
-  
+#
+# This script demonstrates web scraping using xpath
+#------------------------------------------------------------------------------
   
 URL = "https://releases.ubuntu.com/23.04/"
 xpath_href_anchor_tag = '//*[@id="main"]/div/div//div[2]/a/@href'

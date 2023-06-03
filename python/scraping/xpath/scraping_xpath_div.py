@@ -13,6 +13,7 @@ import sys
 #
 #------------------------------------------------------------------------------
 #  References
+#   https://www.freecodecamp.org/news/how-to-scrape-websites-with-python-2/
 #   https://www.scrapingbee.com/blog/practical-xpath-for-web-scraping/
 #
 #------------------------------------------------------------------------------

@@ -7,7 +7,7 @@ if [ "$1" ]; then
   REQ_FILE="requirements.txt"
   GIT_DIR="github-public.git"
   
-  VENV_DIR="/Users/${user}/Development/${GIT_DIR}/.venv"
+  VENV_DIR="/Users/${user}/Development/github/${GIT_DIR}/.venv"
   VENV_NAME="python-venv"
   VENV="${VENV_DIR}/${VENV_NAME}"
   PYTHON="python3.9"

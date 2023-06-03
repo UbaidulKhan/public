@@ -1,0 +1,4 @@
+server_image_suffix: &server_suffix "live-server-amd64.iso"
+desktop_image_suffix: "desktop-amd64.iso"
+netboot_image_suffix: "netboot-amd64.tar"
+download_image_suffix: *server_suffix

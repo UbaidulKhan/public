@@ -2,6 +2,25 @@ import requests # request img from web
 import shutil # save img locally
 import hashlib
 
+#
+#------------------------------------------------------------------------------
+#  Copyright(c):
+#   Ubaidul Khan / ubaidul(dot)khan(at)gmail(dot)com
+#   
+#------------------------------------------------------------------------------
+#
+#
+#------------------------------------------------------------------------------
+#  References
+#    https://pynative.com/python-regex-capturing-groups/   
+#
+#------------------------------------------------------------------------------
+#
+# This script demonstrates regular expression capture groups
+#------------------------------------------------------------------------------
+
+
+
 ubuntu_url = 'https://releases.ubuntu.com/23.04/ubuntu-23.04-netboot-amd64.tar.gz'
 # url = input('Please enter an image URL (string):') #prompt user for img url
 url = ubuntu_url
@@ -10,7 +29,7 @@ file_name = 'ubuntu-23.04-netboot-amd64.tar.gz'
 sha256_checksum = ''
 res = requests.get(url, stream = True)
 
-if res.status_code == 200:
+if (res.status_code == 200):
   try:
     with open(file_name,'wb') as f:
       shutil.copyfileobj(res.raw, f)

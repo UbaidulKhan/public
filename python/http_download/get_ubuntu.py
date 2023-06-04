@@ -16,7 +16,7 @@ import hashlib
 #
 #------------------------------------------------------------------------------
 #
-# This script demonstrates regular expression capture groups
+# This script demonstrates downloading files & calculating sha256 checksum
 #------------------------------------------------------------------------------
 
 

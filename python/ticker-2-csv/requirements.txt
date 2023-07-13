@@ -1,0 +1,6 @@
+requests
+bs4
+lxml
+json
+nasdaq-data-link
+yfinance

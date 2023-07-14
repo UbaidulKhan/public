@@ -1,4 +1,0 @@
-requests
-selenium
-bs4
-lxml

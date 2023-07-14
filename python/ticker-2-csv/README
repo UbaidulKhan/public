@@ -1,4 +1,0 @@
-
-"//td[contains(@class, 'summary-data__cell')]"
-'//tr/td[normalize-space(text())="Sector"]/..'
-'//tr/td[normalize-space(text())="Sector"]/../.'

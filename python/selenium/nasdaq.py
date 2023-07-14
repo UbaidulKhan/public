@@ -13,13 +13,6 @@ headers = {
     "Referer": "https://www.nasdaq.com/market-activity/stocks/dkng"
 }
 
-# Create a new instance of the Firefox driver
-driver = webdriver.Firefox()
-
-# Set the maximum amount of time to wait for a page to load
-driver.set_page_load_timeout(10)
-
-
 # Specify the path to the Firefox binary
 driver_path = './geckodriver'
 firefox_binary_path = '/Applications/Firefox-91.app/Contents/MacOS/firefox'
@@ -30,11 +23,15 @@ firefox_binary_path = '/Applications/Firefox-91.app/Contents/MacOS/firefox'
 driver = webdriver.Firefox()
 
 
+# Set the maximum amount of time to wait for a page to load
+driver.set_page_load_timeout(20)
+
+
 try:
     # Open the web page
     # driver.get("https://www.example.com")
     driver.get(url)
-    time.sleep(5)
+    time.sleep(10)
     
 
     # Find the table element using XPath
@@ -42,11 +39,15 @@ try:
 
     # Find all the table data (td) elements within the table using XPath
     table_data = table.find_element("xpath", "//tr/td[normalize-space(text())='Sector']/../.")
+    table_data = table_data.text
+    print(f' Table data is: {table_data}')
 
+    '''
     # Loop through the table data elements and print their text content
     for data in table_data:
         print(data.text)
-
+    '''
+    
 except Exception as e:
     print("Error:", str(e))
 

@@ -34,7 +34,7 @@ try:
     
 
     # Find the table element using XPath
-    table = driver.find_element("xpath", "//table[@class='summary-data__table']")
+    # table = driver.find_element("xpath", "//table[@class='summary-data__table']")
 
     # Find all the table data (td) elements within the table using XPath
     table_data = table.find_elements_by_xpath("//tr/td[normalize-space(text())='Sector']/../.")

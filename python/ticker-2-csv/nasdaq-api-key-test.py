@@ -7,7 +7,7 @@ from bs4 import BeautifulSoup
 # import nasdaqdatalink
 # mydata = nasdaqdatalink.get("FRED/GDP")
 
-api_key = f'kQMadDsvVdEbs6waz1kN'
+api_key = f''
 ticker = 'DKNG'
 # url = f"https://data.nasdaq.com/api/v3/datasets/WIKI/{ticker}/data.json?api_key={api_key}"
 url = f"https://data.nasdaq.com/api/v3/datasets/WIKI/DKNG/data.json?api_key=kQMadDsvVdEbs6waz1kN"

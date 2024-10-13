@@ -43,7 +43,8 @@ domains = [ 'login.salesforce.com', 'gmuadvancement.my.salesforce.com',
             'mason.my.salesforce.com', 'gmuadvancement.my.salesforce.com',
             'test.l2.salesforce.com', 'na168-ia5.salesforce.com',
             'st1.edge.sfdc-yfeipo.edge2.salesforce.com',
-            'www.salesforce.com', 'gmuadvancement.my.salesforce.com' ]
+            'www.salesforce.com', 'gmuadvancement.my.salesforce.com',
+            'salesforce.com' ]
 
 for domain in domains:  
   print(f"-----------------------------------------------------------")

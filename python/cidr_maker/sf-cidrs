@@ -1,0 +1,334 @@
+[H[2J[3J
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Setting PYTHONPATH to: :/home/ukhan/Development/github/public.git/python
+
+Running python script: dns_2_cidr/lookup.py
+
+-----------------------------------------------------------
+  Looking up domain: login.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 136.146.26.213
+     login.salesforce.com 136.146.26.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.26.213
+     login.salesforce.com 136.146.26.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.26.213
+     login.salesforce.com 136.146.26.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.27.213
+     login.salesforce.com 136.146.27.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.27.213
+     login.salesforce.com 136.146.27.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.27.213
+     login.salesforce.com 136.146.27.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.28.213
+     login.salesforce.com 136.146.28.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.28.213
+     login.salesforce.com 136.146.28.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.28.213
+     login.salesforce.com 136.146.28.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.25.213
+     login.salesforce.com 136.146.25.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.25.213
+     login.salesforce.com 136.146.25.213 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.25.213
+     login.salesforce.com 136.146.25.213 CIDR: 136.146.0.0/16 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain: gmuadvancement.my.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain:  gmuadvancement--gmusandbox.sandbox.my.salesforce.com
+-----------------------------------------------------------
+Error resolving domain  gmuadvancement--gmusandbox.sandbox.my.salesforce.com: [Errno -2] Name or service not known
+
+
+
+-----------------------------------------------------------
+  Looking up domain: mason.my.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 13.110.64.204
+     mason.my.salesforce.com 13.110.64.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.64.204
+     mason.my.salesforce.com 13.110.64.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.64.204
+Error performing WHOIS lookup for IP 13.110.64.204: HTTP lookup failed for http://rdap.arin.net/registry/ip/13.110.64.204.
+  Looking up whois for IP: 13.110.65.204
+     mason.my.salesforce.com 13.110.65.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.65.204
+     mason.my.salesforce.com 13.110.65.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.65.204
+     mason.my.salesforce.com 13.110.65.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.71.204
+     mason.my.salesforce.com 13.110.71.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.71.204
+     mason.my.salesforce.com 13.110.71.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.71.204
+     mason.my.salesforce.com 13.110.71.204 CIDR: 13.110.0.0/16 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain: gmuadvancement.my.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 54.156.105.92
+Error performing WHOIS lookup for IP 54.156.105.92: HTTP lookup failed for http://rdap.arin.net/registry/ip/54.156.105.92.
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+Error performing WHOIS lookup for IP 3.219.189.34: HTTP lookup failed for http://rdap.arin.net/registry/ip/3.219.189.34.
+
+
+
+-----------------------------------------------------------
+  Looking up domain: test.l2.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 136.146.44.212
+     test.l2.salesforce.com 136.146.44.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.44.212
+     test.l2.salesforce.com 136.146.44.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.44.212
+     test.l2.salesforce.com 136.146.44.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.45.212
+     test.l2.salesforce.com 136.146.45.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.45.212
+     test.l2.salesforce.com 136.146.45.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.45.212
+     test.l2.salesforce.com 136.146.45.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.42.212
+     test.l2.salesforce.com 136.146.42.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.42.212
+     test.l2.salesforce.com 136.146.42.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.42.212
+     test.l2.salesforce.com 136.146.42.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.43.212
+     test.l2.salesforce.com 136.146.43.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.43.212
+     test.l2.salesforce.com 136.146.43.212 CIDR: 136.146.0.0/16 
+
+  Looking up whois for IP: 136.146.43.212
+     test.l2.salesforce.com 136.146.43.212 CIDR: 136.146.0.0/16 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain: na168-ia5.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 13.110.47.204
+     na168-ia5.salesforce.com 13.110.47.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.47.204
+     na168-ia5.salesforce.com 13.110.47.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.47.204
+     na168-ia5.salesforce.com 13.110.47.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.67.204
+     na168-ia5.salesforce.com 13.110.67.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.67.204
+     na168-ia5.salesforce.com 13.110.67.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.67.204
+     na168-ia5.salesforce.com 13.110.67.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.70.204
+Error performing WHOIS lookup for IP 13.110.70.204: HTTP lookup failed for http://rdap.arin.net/registry/ip/13.110.70.204.
+  Looking up whois for IP: 13.110.70.204
+     na168-ia5.salesforce.com 13.110.70.204 CIDR: 13.110.0.0/16 
+
+  Looking up whois for IP: 13.110.70.204
+     na168-ia5.salesforce.com 13.110.70.204 CIDR: 13.110.0.0/16 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain: st1.edge.sfdc-yfeipo.edge2.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 34.226.36.52
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.52 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.52
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.52 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.52
+Error performing WHOIS lookup for IP 34.226.36.52: HTTP lookup failed for http://rdap.arin.net/registry/ip/34.226.36.52.
+  Looking up whois for IP: 34.226.36.53
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.53 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.53
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.53 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.53
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.53 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.51
+     st1.edge.sfdc-yfeipo.edge2.salesforce.com 34.226.36.51 CIDR: 34.224.0.0/12 
+
+  Looking up whois for IP: 34.226.36.51
+Error performing WHOIS lookup for IP 34.226.36.51: HTTP lookup failed for http://rdap.arin.net/registry/ip/34.226.36.51.
+  Looking up whois for IP: 34.226.36.51
+Error performing WHOIS lookup for IP 34.226.36.51: HTTP lookup failed for http://rdap.arin.net/registry/ip/34.226.36.51.
+
+
+
+-----------------------------------------------------------
+  Looking up domain: www.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 23.194.131.160
+     www.salesforce.com 23.194.131.160 CIDR: 23.194.131.0/24 
+
+  Looking up whois for IP: 23.194.131.160
+     www.salesforce.com 23.194.131.160 CIDR: 23.194.131.0/24 
+
+  Looking up whois for IP: 23.194.131.160
+     www.salesforce.com 23.194.131.160 CIDR: 23.194.131.0/24 
+
+  Looking up whois for IP: 23.194.131.219
+     www.salesforce.com 23.194.131.219 CIDR: 23.194.131.0/24 
+
+  Looking up whois for IP: 23.194.131.219
+Error performing WHOIS lookup for IP 23.194.131.219: HTTP lookup failed for http://rdap.arin.net/registry/ip/23.194.131.219.
+  Looking up whois for IP: 23.194.131.219
+     www.salesforce.com 23.194.131.219 CIDR: 23.194.131.0/24 
+
+
+
+
+-----------------------------------------------------------
+  Looking up domain: gmuadvancement.my.salesforce.com
+-----------------------------------------------------------
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 52.1.163.159
+     gmuadvancement.my.salesforce.com 52.1.163.159 CIDR: 52.0.0.0/15 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 54.156.105.92
+     gmuadvancement.my.salesforce.com 54.156.105.92 CIDR: 54.156.0.0/14 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+  Looking up whois for IP: 3.219.189.34
+     gmuadvancement.my.salesforce.com 3.219.189.34 CIDR: 3.208.0.0/12 
+
+
+
+

@@ -56,6 +56,8 @@ class AwsIPS:
 ##   
 def main():
   
+  #
+  ## This URL is where all the AWS IPs are published in json format
   url = "https://ip-ranges.amazonaws.com/ip-ranges.json"
   
   myaws = AwsIPS(url)

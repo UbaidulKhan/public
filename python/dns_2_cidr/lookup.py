@@ -1,4 +1,5 @@
 import socket
+import ipaddress
 from ipwhois import IPWhois
 
 #------------------------------------------------------------------------------
@@ -7,6 +8,68 @@ from ipwhois import IPWhois
 #   
 #------------------------------------------------------------------------------ 
 
+
+#
+## This sub-routine will add header and trailer to each line from
+## the ip_collection
+##-----------------------------------------------------------------------------
+#
+# 
+def sort_ip_addresses(ip_collection):
+    """
+    Sorts a list of IP addresses.
+
+    Args:
+        ip_list (list of str): List of IP addresses as strings.
+
+    Returns:
+        list of str: The sorted list of IP addresses.
+    """
+    # return sorted(ip_list, key=lambda ip: ipaddress.ip_network(ip, strict=False))
+    
+    
+    return sorted(ip_collection, key=lambda ip: ipaddress.ip_address(ip, strict=False))
+
+
+#
+## This sub-routine will add header and trailer to each line from
+## the ip_collection
+##-----------------------------------------------------------------------------
+#
+# 
+def print_collection(ip_collection):
+  
+  collection_hash = hash(tuple(ip_collection))
+  
+  print(f' |  Hash of the collectino: {collection_hash}')
+  print(f' +-------------------------------------------------')
+
+  header='  - '
+  for ip in ip_collection:
+    print(header + "'" + ip + "'")
+#
+## This sub-routine will insert the network address into 
+## a list, if it does not already exist
+##-----------------------------------------------------------------------------
+#
+# 
+def insert_if_not_exists(ip, ip_collection):
+    """
+    Inserts an item into a list or queue if it does not already exist.
+
+    Args:
+        item: The item to be added.
+        collection: The list or queue to check and insert into.
+
+    Returns:
+        bool: True if the item was added, False otherwise.
+    """
+    if ip not in ip_collection:
+        ip_collection.append(ip)
+        return True
+    return False
+    
+    
 #
 ## This sub-routine will collect all the IPv4 addresses, returned by 
 ## name service lookup.
@@ -29,23 +92,6 @@ def resolve_ipv4_addresses(domain_name):
     return None
 
 
-#
-## This sub-routine will collect all the IPv4 addresses, returned by 
-## name service lookup. 
-##-----------------------------------------------------------------------------
-#
-# 
-# Step 1: Resolve the domain name to an IP address
-'''
-def resolve_domain_to_ip(domain_name):
-    try:
-        ip_address = socket.gethostbyname(domain_name)
-        return ip_address
-    except socket.gaierror as e:
-        print(f"Error resolving domain {domain_name}: {e}")
-  
-        return None
-'''
 
 #
 ## This sub-routine take one IP address and perform a ASN look-up. Then
@@ -70,7 +116,12 @@ def whois_lookup(ip_address):
 #
 #
 def main():
+
   
+  #
+  ## Build a list to store network addresses
+  ip_collection = []
+    
   #
   ## Build a list of domain names to lookup
   domains = [ 'login.salesforce.com', 'gmuadvancement.my.salesforce.com',
@@ -96,13 +147,20 @@ def main():
     if ipv4_list:
       # print(f"IPv4 Addresses for {domain}: {ipv4_list}")
       for ip in ipv4_list:
-        print(f'  Looking up whois for IP: {ip}')
+        # print(f'  Looking up whois for IP: {ip}')
         whois_info = whois_lookup(ip)
         if whois_info:
           # print(whois_info.get('asn_cidr', {}))
-          print(f"    ", domain, ip, "CIDR:", whois_info.get('asn_cidr', {}), "\n")
+          # print(f"    ", domain, ip, "CIDR:", whois_info.get('asn_cidr', {}), "\n")
+          ip = whois_info.get('asn_cidr', {})
+          insert_if_not_exists(ip, ip_collection)
 
       print(f"\n\n")
+  
+  #
+  ## Print the list
+  ip_collection = sort_ip_addresses(ip_collection) 
+  print_collection(ip_collection)
 
 
 

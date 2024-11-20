@@ -15,7 +15,7 @@ from ipwhois import IPWhois
 ##-----------------------------------------------------------------------------
 #
 # 
-def sort_ip_addresses(ip_collection):
+def sort_ip_addresses(ip_list):
     """
     Sorts a list of IP addresses.
 
@@ -25,10 +25,11 @@ def sort_ip_addresses(ip_collection):
     Returns:
         list of str: The sorted list of IP addresses.
     """
-    # return sorted(ip_list, key=lambda ip: ipaddress.ip_network(ip, strict=False))
     
+    sorted_list = sorted(ip_list, key=lambda ip: ipaddress.ip_network(ip, strict=False))
+    # print(f'  Sorted list is: {sorted_list}')
     
-    return sorted(ip_collection, key=lambda ip: ipaddress.ip_address(ip, strict=False))
+    return(sorted_list)
 
 
 #
@@ -64,11 +65,18 @@ def insert_if_not_exists(ip, ip_collection):
     Returns:
         bool: True if the item was added, False otherwise.
     """
-    if ip not in ip_collection:
-        ip_collection.append(ip)
-        return True
-    return False
+    print(f' {ip} Type of ips is: {type(ip)}')
     
+    if ip not in ip_collection:
+        #print(f' {ip} does not exist in ip_collection, adding')
+        ip_collection.append(ip)
+    #    return True
+    #return False
+    else:
+        print(f' {ip} alredy exist in ip_collection, skipping')
+
+    
+
     
 #
 ## This sub-routine will collect all the IPv4 addresses, returned by 
@@ -84,8 +92,10 @@ def resolve_ipv4_addresses(domain_name):
         
     # Filter only IPv4 addresses (family = socket.AF_INET)
     ipv4_addresses = [info[4][0] for info in addr_info if info[0] == socket.AF_INET]
-        
-    return ipv4_addresses
+    
+    # print(f' IP addres: {ipv4_addresses} is of type: {type(ipv4_addresses)}')
+    
+    return (ipv4_addresses)
   
   except socket.gaierror as e:
     print(f"Error resolving domain {domain_name}: {e}")
@@ -159,6 +169,7 @@ def main():
   
   #
   ## Print the list
+  # print(ip_collection)
   ip_collection = sort_ip_addresses(ip_collection) 
   print_collection(ip_collection)
 

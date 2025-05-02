@@ -1,0 +1,16 @@
+text,target
+"the house had a tiny little mouse",spam
+"the cat saw the mouse",ham
+"the mouse ran away from the house",spam
+"the cat finally ate the mouse",ham
+"the end of the mouse story",spam
+"the house had a tiny little dog",spam                                        
+"the dog saw the squirrel",ham                                                     
+"the dog ran away from the house",spam                                        
+"the dog finally ate the squirrel",ham                                             
+"the end of the dog story",spam 
+"the house had a tiny little possum",spam                                        
+"the possum saw the squirrel",ham                                                     
+"the possum ran away from the house",spam                                        
+"the possum finally ate the squirrel",ham                                             
+"the end of the possum story",spam 

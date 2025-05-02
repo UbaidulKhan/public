@@ -1,0 +1,565 @@
+
+Progress: 4:53 (Identifying Features from Text)
+Date: March 9, 2023
+Status:
+  Slide: Generative Models and LDA
+	Time:  4:24/13:57
+	
+
+*                                                                              *
+
+[ SEMANTIC TEXT SIMILARITY ] 																																						 
+ Which pair of word are similar:
+
+   ) deer and elk 
+   ) deer and giraffe 
+   ) deer and horse
+   ) deer and mouse
+
+ How do you quantify the similarty between deer and elk?  
+
+ Semantic Text Similarity - 
+
+ 1) Helps us group similar words into semantic concepts
+ 
+ 2) AS a building block in natural language understanding tasks
+ 
+    a) Textual Entailment - if we have multiple sentences. One ore more of the 
+		   sentences can derive its meaning from another piece of text.
+			 
+			 An example of a positive TE (text entails hypothesis) is:
+			 
+			 text: If you help the needy, God will reward you.
+			 hypothesis: Giving money to a poor man has good consequences.
+			 
+		WordNet - semantic dictionary of English words, interlinked by semantic 
+		          relations
+			 
+		b) Paraphrasing - re-writing a sentance as the original with same meaning
+*                                                                              *
+
+
+  WordNet
+  =-=-=-=-=
+  WordNet organizes information in a hierarchy, in a tree. You have a dummy root 
+  that is on top of all words of the same part of speech. So noun has a dummy 
+  root. A verb has a dummy root. And then, there are many semantic similarity 
+  measures that are using this hierarchy, in some way. 
+
+        
+                           ungulate
+                              / \
+                             /   \
+                            /     \
+                           /       \     <------ This path has a value of 1
+                          /         \
+                         /           \
+                        /             \
+                       /               \
+                      /                 \
+           even-toed ungulate     odd-toed ungulate
+                     /                    \
+                    /                      \
+                   /                        \  <-- This path has a value of 1 
+                  /                          \
+                 /                            \
+                /                              \
+             ruminant                        equine
+        		   /|\                             /|\
+              / | \                           / | \
+             /  |  \                         /  |  \
+            /   |   \                       /   |   \ <-- This path has a 
+           /    |    \                     /    |    \    value of 1
+          /     |     \                   /     |     \
+        okapi  deer  giraffe           mule   horse  zebra
+               /|\                              |
+              / | \                             | <-- This path has a 
+             /  |  \                            |     value of 1
+            /   |   \                           | 
+           /    |    \                          |
+          /     |     \                         |
+         elk  wapiti  caribou                 pony
+         
+
+			
+  Similarity between two words is measured by:
+ 
+                   (1) 
+		----------------------------------------
+		(1 + the distance between the two words)
+ 
+     Distance(D) = 1 / (path-length + 1)
+	 
+     D(elk, deer) = 1 / (distance + 1) = 1/2 = 0.5
+	 
+     D(deer, giraffe) = 1 / (2+1) = 1/3 = 0.66
+
+     D(deer, horse) = 1 / (6+1) = 1/7 = 0.14
+	
+	
+
+ Lowest Common Subsumer(LCS)
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  Another approach to finding the similarity between two words, by findind
+  the closest ancestor to both concepts.
+ 
+   - LCS(deer, giraffe) = Ruminant
+   - LCS(deer, elk) = deer
+   - LCS(deer, horse) = Ungulate
+
+
+ Lin Similarity(LCS)
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-= 
+  Similarity is measured based on information contained in teh LCS:
+ 
+   2 x log P(LCS(u,v))
+	-----------------------  P is the probablity 
+   (log P(u) + log P(v))
+
+*                                                                              *
+
+  Python Code - this code, performs:
+ 
+  1) Find appropriate sens of the words - noun
+	
+	   deer
+		 elk
+ 
+  -----------------------------------------------------------------------------
+	 import nltk
+	 from nltk.corpus import wordnet as wn
+	 
+	 deer = wn.synset('deer.n.01')
+	 elk = wn.synset('elk.n.01')
+  -----------------------------------------------------------------------------
+
+  2) Find path similarity
+
+  -----------------------------------------------------------------------------
+	 import nltk
+	 from nltk.corpus import wordnet as wn
+	 
+	 deer = wn.synset('deer.n.01')
+	 elk = wn.synset('elk.n.01')
+	 
+	 deer.path_similarity(elk)       // 0.5
+	 deer.path_similarity(horse)     // 0.14285714285
+
+  -----------------------------------------------------------------------------
+
+  3) Find Lin similarity
+
+  -----------------------------------------------------------------------------
+	 import nltk.corpus import wordnet_ic
+	 
+	 brown_ic = wordnet_ic.ic('ic-brown.lin)
+	 
+	 deer = wn.synset('deer.n.01')
+	 elk = wn.synset('elk.n.01')
+	 
+	 deer.lin_similarity(elk, brown_ic)        
+	 deer.lin_similarity(horse, brown_ic)      
+
+  -----------------------------------------------------------------------------
+
+*                                                                              *
+	
+
+ Pointwise Mutual Information
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+  - Strength of association between words:
+	
+	  - How frequent are words: not similar if two words dont occur together
+		  often
+		
+		- How frequent are individual words: the word *the* is very frequent, so
+		  high chances it co-ocurs often with every other word
+	
+	Pointwise Mutual Information allows use to measure this similarity:
+	
+	                      P(w,c) <- probably of w and c occuring together
+	  PMI(w,c) = log [ -------------]
+		                   P(w) P(c) <- probably of w and c occuring independently
+	
+
+ NLTK provides this functionality:
+ 
+  -----------------------------------------------------------------------------
+	 import nltk
+	 from nltk.collections import *
+	 
+	 bigram_measures = nltk.collections.BigramAsssocMeasures()
+	 
+	 finder = BigramCollectionFinder.from_words(text)
+	 
+	 //	Find top 10 paris 
+	 finder.nbest(bigram_measures.pmi, 10)  
+	 
+	 // Filter out pairs that do not occur at least 10 words
+	 finder.apply_freq_filter(10)
+  -----------------------------------------------------------------------------
+	
+*                                                                              *
+ 
+[ TOPIC MODELING ] 	
+																																					 
+ Coarse-level analysis of what is in a text collection. Imagine if we have a 
+ large corpus and we want to understand what topics are covered in this 
+ collection, then we would use topic modeling to determine those topics.
+ 
+ What is Topic Modeling?
+ 
+  What's known:
+	
+	 1) The text collection or corpus
+	 2) Number of topics - we are told that there are 10 topics 
+	
+  Goal:
+	
+	 1) Find the 10 topics
+	 2) Find the words that make up these 10 topics.
+	
+	 Essentially this is a text clustering problem - Documents and words 
+	 clustered simultaneously.
+	 
+  What is NOT known:
+	
+	 1) The actual topics
+	 2) Topic distribution for each document. 
+	
+  Essentially a text clustering problem:
+
+	 1) Documents and words clustered simultaneously
+	 
+  Tasks:
+
+	 1) Figure out what words come together - how are they similar to each other
+	    or semantically realted to each other.
+
+	 2) What documents are of the same topic or mostly about the same topic.
+	 
+	 3) Calculate the distribution of words in a document.
+			
+  Approaches to Topic Modeling:
+
+	 1) Probabilistic Latent Semantic Analysis(PLSA)
+	 
+	 2) Latent Dirichlet(pronounced De-rec-lay) Allocation (LDA). This is the 
+	    most popular topic modeling approach.
+	
+	Example - let’s say a document belongs to the topics food, dogs and health. 
+	So if a user queries “dog food”, they might find the above-mentioned document 
+	relevant because it covers those topics(among other topics)
+	 
+*                                                                              *
+
+ Generative Models - Simple, Complex
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+ Simple Generative Process - Imagine we have a corpus of documents and we 
+ generate a distribution list of the words from the corpus:
+ 
+    +-----------+-------+
+    | the       | 0.1   |
+    +-----------+-------+
+    | is        | 0.07  |
+    +-----------+-------+
+    | harry     | 0.05  |
+    +-----------+-------+
+    | potter    | 0.04  |
+    +-----------+-------+
+    | movie     | 0.04  |
+    +-----------+-------+
+    | plot      | 0.02  |
+    +-----------+-------+
+    | time      | 0.01  |
+    +-----------+-------+
+    | rowling   | 0.01  |
+    +-----------+-------+
+*                                                                              *
+
+ Looking at this distribution model, it become clear that this model favors 
+ harry potter. This is a very simple generative process. This is called an 
+ unigram model.
+ 
+ Complex Generative Process - imagine we have four corpuses, if we generate a 
+ distribution model, it will be more complex than the previous model. Here we
+ have multiple topics(say four), contributing to the generation of a single 
+ document.
+ 
+ Word distribution(s):
+ 
+  Topic-1
+	=-=-=-=-=
+ 
+    +-----------+-------+
+    | book      | 0.15  |
+    +-----------+-------+
+    | harry     | 0.01  |
+    +-----------+-------+
+    | potter    | 0.08  |
+    +-----------+-------+
+    | rowling   | 0.05  |
+    +-----------+-------+--------+
+	                               |
+	                               |
+  Topic-2                         ====> The movie harry potter is based on
+	=-=-=-=-=                      |      j.k. rowling
+	                               |
+    +-----------+-------+--------+
+    | movie     | 0.18  |
+    +-----------+-------+
+    | harry     | 0.09  |
+    +-----------+-------+
+    | potter    | 0.08  |
+    +-----------+-------+
+    | director  | 0.04  |
+    +-----------+-------+
+*                                                                              *
+
+ Generative Models - Latent Dirichlet Allocation(LDA)
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+ References:
+ 
+	 Rachel Brynsvold - Literary Analysis via NLP: Topic Modeling Project 
+	 Gutenberg (PyTexas 2017)
+    https://www.youtube.com/watch?v=Qnk0vVpqoNY
+		
+		
+
+ Working with LDA in Python
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+ Here are some python packages that help us work with LDA:
+ 
+  - gensim
+	- lda
+
+ Before working with any of these packages, the text needs to be pre-processed:
+ 
+  - Tokenize, normalize(lowercase) 
+	- Stop word removal
+	- Stemming
+
+*                                                                              *
+	
+	Python Code:
+	
+  -----------------------------------------------------------------------------
+	 import gensim
+	 from gensim import corpora, models
+	 
+	 /*  First you create a dictionary, dictionary is mapping between IDs
+	  and words.
+	 */
+	 dictionary = corpora.Dictionary(doc_set)
+	 
+	 /* Then you create corpus, and corpus you create going through this, all the 
+	  documents in the doc_set, and creating a document to bag of words model. 
+		This is the step that creates the document term matrix. */
+	 corpus = [dictionary.doc2bow(do) for doc in doc_set]
+	 
+	 /* gensim.models LdaModel is used to specify the number of topics you want 
+	  to learn. So in this case, we said number of topics is going to be four, 
+		and you also specify this mapping, the id2word mapping. That's a dictionary
+		that is learned two steps ahead.
+	 */
+	 ldamodel = gensim.modles.ldamodel.LdaModel(corpus, num_topics=4, 
+	                                            id2word=dictionary, passes=50)
+	 print(ldamodel.print_topics(num_topics=4, num_words=5))
+  -----------------------------------------------------------------------------
+ 
+ 
+*                                                                              *
+
+Information Extraction  =-=-=-=-=-=-=-=-=--=-=																																						 
+ Information is hidden in free-text in very interesting ways:
+ 
+  - Most traditional transactional information is structured
+	- Deluge of information buried in unstructured, freeform text - 80% of data
+	  can be found in blogs, websties, etc in an unstructured form.
+		
+ Chellange:
+ 
+  - How do we convert unstructured text to structured form?
+
+ Goal:
+ 	
+	- Goal of this task is to identify and extract fields of interest from free 
+	  text.
+
+ Fields of Interest:
+ 	
+	- [NEWS] People, Places, Dates, ..
+	- [FINANCE] Money, Companies, Earnings, Products, Recalls, Lawsuits
+	- [MEDICINE] Disease, Drugs, Trials, FDA Approvals, Procedures
+	
+ Relations:
+ 	
+	- What happened to who, when, where, why
+*                                                                              *
+	  > Who: person, company
+		
+		> Where: place
+		
+		  Where is a place, but it also has this relationship between these named
+			entities, to get meaningful semantics out of it.
+			
+		> When: date, time
+		
+		> Why: 
+		
+		
+ Named Entity Recognition
+ =-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+	> Named Entities: Non phrases that are of specific type and refer to specific
+	  individuals, places, organizations, etc
+ 
+	> Named Entity Recognition: Technique9s) to identify all mentions of predefined
+	  named entities in text:
+		
+		>> Identify the mention / phrase: Boundary detection
+		
+		>> Identify the type: Tagging / classification
+*                                                                              *
+
+	Example: 
+	--------
+	
+	 > Chicago, possible labels:
+	
+		>> Place
+		>> Album
+		>> Font 
+
+
+	Example: 
+	--------
+	
+	 > "The patient is a 63-year-old female with a three-year history of bilateral 
+	   hand numbness and occasional weakness.
+		 
+		 Within the past year, these symptoms have progressively gotten worse, to 
+		 encompass also her feet.
+		 
+		 She had a worksup by her neurologist and the MRI revealed a C5-6 disc 
+		 herniation and cord compression and a T2 signal change at that level.
+		 "
+		 
+		 Disease/Conition/Symptom: 
+		 
+		  >> bilateral hand numbness 
+		  >> occasional weakness
+		  >> C5-6 disc herniation
+		  >> Cord compression
+			>> T2 signal change
+
+		 Age: 
+		 
+		  >> 63
+			
+		 Gender: 
+		 
+		  >> Female
+			
+		 Medical Speciality: 
+		 
+		  >> Neurologist 			
+*                                                                              *
+		 Procedure: 
+		 
+		  >> Work-up
+			>> MRI
+			
+		 Body Parts: 
+		 
+		  >> Hands 				 	
+		  >> Feet
+		
+		 Named Entities:
+		 
+		  >> bilateral hand numbness, hands 				 	
+
+	 > Chellanges:
+	 
+	   >> Granularity with which you need to annotate the data. 
+		 
+
+	
+ Approaches to Named Entity Recognition
+ =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+ 
+  Largely depends on the entities we are trying to identify: 
+	
+	1) Regular Expression - for well-formatte fields like date, phone numbers
+	
+	2) Machine Learning - where you use these regular expressions as features. 
+	   But you have other features that help them define this particular.
+		 
+		 Example - phone numbers and fax numbers are very similar. 
+	
+		 Four primary models are used for Machine Learning approaches:
+		 
+		  a) PERson
+			
+			b) ORGanization
+			
+			c) LOC/GPE:
+			   LOC: Location
+				 GPE: Countries, Cities, States
+				 
+			d) Other/Outside: everyting else
+	
+  Example: John  met    Brenda
+	          PER  Other   PER 
+
+*                                                                              *
+
+  Relation Extraction
+	-------------------
+	 The relation extraction task is identifying the relationship between named 
+	 entities.
+	 
+	 Example - Erbitux help treat lung cancer
+	 
+	   Erbitux ==== treatment ====> Lung Cancer
+	    treatment                   disease
+
+
+  Co-reference resolution
+	------------------------
+	 The CorefAnnotator finds mentions of the same entity in a text, such as when 
+	 “Theresa May” and “she” refer to the same person. 
+	 
+	 Example: 
+	 
+	   Anita met Josheph at the market. He surprised her with a rose. 
+		 
+		 Pronoun resolution:
+		 
+		   Her => Anita
+		   He  => Joseph
+			 
+			 
+
+ Question Answering 
+ =-=-=-=-=-=-=-=-=-=
+  Given a question, find the most appropriate answer from the text. Both Named 
+	Entity Recognition and Relation Extraction needs to be performed in order to 
+	answer the question,.
+	
+	Example:
+	--------
+	 What does Erbitux treat?
+	 Who gave Anita the rose?
+	
+	To answer these two questions we need to leverage:
+	
+	 1) Entity Recognition
+	 2) Relation Extraction
+	 3) Co-reference resolution
+	 
+	 		
+	         

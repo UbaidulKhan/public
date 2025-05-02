@@ -1,0 +1,151 @@
+
+               Scikit-Learn Beginners Lessons
+
+*                                                                             *
+
+ Source: https://www.youtube.com/watch?v=i_LwzRVP7bg
+
+ Data Source: https://archive.ics.uci.edu/ml/index.php
+              https://archive.ics.uci.edu/ml/datasets/MAGIC+Gamma+Telescope
+
+ To make predictions, scikit works with features. Features are independent of 
+ one another. However, labels(predictions) are dependent on features. There 
+ can be multiple rows of feature - each row is called an instance:
+
+  [ Feature-1, Feature-2, Feature-3, Feature-4, Label ]
+	[    X1    ,     X2   ,     X3   ,     X4   ,   y1  ]
+	[    X5    ,     X6   ,     X7   ,     X8   ,   y2  ]
+	[    X9    ,    X10   ,    X11   ,    X12   ,   y3  ]
+	
+	- Dimensions: number/length of features: 4
+	- Instances:  number of rows:            3
+	
+*                                                                             *
+
+ Supervised Learning
+ -------------------
+  Several inputs(feature vector) is fed into a model, which in then produces
+	an output(prediction)
+	
+	Features can be of the type:
+	
+	 - Qualitative: categorical data(finite number of categories or groups)
+	 
+		 Nominal Data - no inherent order to the data. Nominal data needs to
+		                be encoded, before they are fed into the model.
+										Example - 
+										  Gender: Male/Female
+		                  Nationality: India, Pakistan, Srilanka
+										
+		 Ordinal Data - inherent order to the data. 
+										Example - 
+                      Age Groups: Babies, Toddler, Teenagers, Young Adults, 
+											            Middle Aged, Elderly
+
+                      Reviews: Bad, Not so good, Mediocre, Average, Good,
+											         Excellent erly
+*                                                                             *
+
+   Encoding - Qantitative Data
+   -------------------------------
+   One hot encoding is a process by which categorical variables are converted 
+   into a form that could be provided to ML algorithms to do a better job in 
+   prediction. Let us consider a categorical data(finiite number of 
+	 categories or groups):
+   
+    Category           Encoding
+      USA              [1,0,0,0]
+      India            [0,1,0,0]
+      Canada           [0,0,1,0]
+      France           [0,0,0,1]
+
+    Category           Encoding
+      Bad                [1]
+      Mediocre           [2]
+      Average            [3]
+      Good               [4]
+      Excellent          [5]
+
+
+	 - Quantitative: numerical valued data(could be discrete or continuous)
+	 
+		 Discrete Data - integers, example - number of eggs in an easter basket 
+		 Continuous Data - inches in height
+		 
+ Classification
+ ----------------
+  Predict discrete classes - hot dog, pizza, ice cream. This is a multi-class
+	classification.
+	
+	Binary Classification - Hot dog or not. Spam or Ham
+*                                                                             *
+
+	
+  Regression
+  -----------
+	 Predict continuous values - price of bitcoin, temperature tomorrow, price 
+	 of a house 
+	 
+	 
+	
+  Data Set
+  -----------
+	 3 Tiers of Data should be used:
+	 
+	  1) Training 
+		2) Validation
+		3) Test
+	
+	Testing Phase & Loss
+	----------------------
+	 Difference between the prediction and the truth. Based on the loss, 
+	 adjustments are made to the parameters to fine-tune the model. This 
+	 process is tuning is called Training.
+	 
+	 Validation Phase -  
+*                                                                             *
+	 
+	Validation Phase
+	----------------------
+	 After the testing phase is finished - all the tunings are are done, we feed
+	 the validation data through the model to measure the performance of the 
+	 model
+	 	 
+	 
+ Loss Functions
+ ---------------
+ 
+  L1 Loss Function
+	-----------------
+	 loss = sum (|y{real} - y{predicted})
+	 
+  L2 Loss Function 
+	-----------------
+	 This loss function is quadratic:
+	  
+	 loss = sum ((|y{real} - y{predicted}))^2
+	 
+	 
+  Binary Cross-Entropy Loss 
+	--------------------------
+	
+*                                                                             *
+	
+  K-Nearest Neighbor 
+	------------------
+	K - how many neighbors do we use in order to judge what the label is.
+	Usually the K can be 3 or 5, but can be bigger depending on the size of the 
+	data.
+	
+	
+	
+  Prediction Performance Measures
+	-------------------------------
+	
+	 > AUC - Area Under the Curve
+	 > F1
+	
+	
+	
+	
+	

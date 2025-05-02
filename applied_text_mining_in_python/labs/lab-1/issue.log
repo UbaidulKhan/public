@@ -1,0 +1,34 @@
+-----------------
+Lines to monitor: 73, 81, 93, 108, 196, 200
+  229 - 462 couldn't find any matches
+  
+    > september 1985
+	> june 2011
+	> may 1986
+
+-----------------
+
+Line: 340 [\d]{1,2} [adfjmnso][a-z]* [\d]{2,4} did not match: currently on zoloft, 50 mg, dicolenac, 100 mg, hydrocodone, seroquel, 100 mg. was hospitalized for serotonin syndrome for 3 days in march, 2005 due to dr. potts increasing effexor and zoloft. current psychopharmacologist(s) and phone #(s):
+
+  Regex matched: ['oloft, 50', 'dicolenac, 100', 'seroquel, 100', 'march, 2005']
+  Pattern matched: [adfjmnos][a-z]*, [\d]{2,4}
+
+
+Format: march, 2005
+-----------------
+
+Line: 344 (?<!\.)[\d]{1,2}[\/-][\d]{1,2}[\/-][\d]{2,4} did not match: 6/1998 primary care doctor:
+Format: 6/1998 
+
+-----------------
+
+Line: 345 [\d]{1,2} [adfjmnso][a-z]* [\d]{2,4} did not match: s 52 y/o mwm h/o chronic depression, anxiety, adhd.  here for psychopharm transfer in the context of his recent psychiatrist dr. blankenship's departure in 6/2005.  patient endorses a long history of depression "ever since childhood" which wodesned in college and while patient was in doctors without borders--was stationed in bulgaria as a medical assistant, and left after several months: "i was so depressed i only weighed 120 lbs."
+
+Format: 6/2005
+-----------------
+
+-----------------
+
+-----------------
+
+-----------------

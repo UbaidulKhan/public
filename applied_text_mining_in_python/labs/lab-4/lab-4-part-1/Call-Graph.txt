@@ -1,0 +1,42 @@
+
+
+ Following functions are being called by other functions:
+ 
+   +-----------+
+	 | main      |
+   +-----------+
+	 | load_data |
+	 +-----------+
+	             |
+	             +---------------------+
+	             | load_data           |
+							 |   (file_path)       |
+	             +---------------------+
+	             | pd.read_csv         |
+	             | doc1 = CSV(field-1) |
+	             | doc2 = CSV(field-2) |
+	             | doc_to_synsets      |  
+	             | doc_to_synsets      |
+	             +---------------------+
+																		  |
+																		  +------------------------------+
+																		  | doc_to_synsets               |
+																			|  (doc)                       |
+																		  +------------------------------+
+																		  | tokens =                     |
+																			|  nltk.word_tokenize(doc)     |
+																			|                              |
+																			| synsets = []                 |
+																			|                              |
+																		  | word_tags =                  |
+																			|  nltk.pos_tag(token)         |
+																			|                              |
+																		  | word in word_tags:           |
+																	    |  tag = convert_tag(tag)      |
+																	    |  synset =                    |
+																	    |    wn.synsets(word, pos=tag) |
+																			|  synsets.append(synset[0])   |
+																			|                              |
+																			| return(synsets)              |
+																			|                              |
+																		  +------------------------------+

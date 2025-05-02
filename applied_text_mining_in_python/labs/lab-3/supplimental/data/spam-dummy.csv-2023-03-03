@@ -1,0 +1,30 @@
+text,target
+"the house had a tiny little U+1F42D", ham
+"the U+1F408 saw the U+1F42D", ham
+"the U+1F42D ran away from the house", spam
+"the U+1F408 chased the U+1F42D to the forest", ham
+"1F408 and U+1F42D ended up in different parts of the forest", spam
+"end of the story", ham
+text,target
+"I know you are thinkin malaria. But relax, children cant handle malaria. She would have been worse and its gastroenteritis. If she takes enough to replace her loss her temp will reduce. And if you give her malaria meds now she will just vomit. Its a self limiting illness she has which means in a few days it will completely stop",ham
+"the house had a tiny little mouse",spam
+"the cat saw the mouse",ham
+"the mouse ran away from the house",spam
+"the cat finally ate the mouse",ham
+"the end of the mouse story",spam
+text,target
+"the house had a tiny little mouse",spam
+"the cat saw the mouse",ham
+"the mouse ran away from the house",spam
+"the cat finally ate the mouse",ham
+"the end of the mouse story",spam
+"the house had a tiny little dog",spam                                        
+"the dog saw the squirrel",ham                                                     
+"the dog ran away from the house",spam                                        
+"the dog finally ate the squirrel",ham                                             
+"the end of the dog story",spam 
+"the house had a tiny little possum",spam                                        
+"the possum saw the squirrel",ham                                                     
+"the possum ran away from the house",spam                                        
+"the possum finally ate the squirrel",ham                                             
+"the end of the possum story",spam 

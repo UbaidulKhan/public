@@ -1,0 +1,3 @@
+To run the python script, run:
+
+  $ ./run.sh tfidf3.py

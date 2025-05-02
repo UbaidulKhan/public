@@ -1,0 +1,339 @@
+
+NLP tasks could involve the following:
+
+ > Counting words
+ > Counting frequency of words
+ > Finding unique words in a corpus
+ > Find sentence boundaries
+ > Find parts of speech -  to tag a sentence with its part of speech 
+ > Parse the sentence structure 
+ > Try to understand more grammatical constructs and see whether they apply for a particular sentence.
+ > Identify semantic roles of how these words play
+ > Named Entity Recognition - identifying entities in a sentence. So this is called name entity recognition
+ > Co-reference resolution - 
+
+
+Find callouts using regext
+
+  @[A-Za-z0-9_]+
+
+Meta-Characters: Character matches:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+ *      : matches zero or more occurences
+ +      : matches one or more occurences, at least 1 occurance
+ ?      : matches zero or ONE occurences. makes a character optional. 
+
+ .      : wildcard, matches a single character
+ ^      : start of a string
+ $      : end of a string
+-------------------------------------------------------------------------
+ []     : matches one of the set of characters within []
+ [a-z]  : matches one of the range of characters a,b,....,z
+ [^abc] : matches a character that is not a,b or c
+ a|b    : matches either a or b, where a and b are strings
+ ()     : scoping for operators 
+-------------------------------------------------------------------------
+ \      : Escape character for special characters(\t, \n, \b)
+ \b     : matches word boundary 
+ \d     : any non-digit equivalent to [0-9]
+ \D     : any non-digit equivalent to [^0-9]
+ \s     : any whitespace character, equivalent to [ \t\n\r\f\v]
+ \S     : any non-whitespace character, equivalent to [^ \t\n\r\f\v]
+ \w     : any Alphanumeric character, equivalent to [a-zA-Z0-9_]
+ \W     : any non-alphanumeric character, equivalent to [^a-zA-Z0-9_]
+-------------------------------------------------------------------------
+ {n}    : matches n repetitions, where n is greater than 0
+ {,n}   : at most n repetitions
+ {m,n}  : at least m and at most n repetitions
+
+
+Meta-Characters: Character Repetitions
+
+ *      : matches zero or more occurences
+
+        Regex: 
+
+          (f|c)at*
+
+        Will match:
+
+          fat
+          cat
+          caat
+          fart
+
+
+          Regex: 
+
+          [fc]at*
+
+        Will match:
+
+          fat
+          cat
+          caat
+          fart
+
+
+ +      : matches one or more occurences, at least 1 occurance
+        
+        Regex: 
+
+          /ea+/g   
+
+        Will match:
+
+          eg
+          egg
+          ego
+          egalitarian
+
+        Regex: 
+
+          /ee+/g   
+
+        Will match:
+
+          ee
+          street
+          greed
+          creed
+
+          Will NOT match:
+
+           e
+
+
+
+ ?      : matches zero or ONE occurences. makes a character optional. 
+
+        Regex: 
+
+          /ea?/g
+
+          Here the character a is optional
+
+        Will match:
+
+          e
+          ea
+          ear 
+          eat 
+          each
+          
+          This will match: eet eat* ego
+
+ {n}    : matches n repetitions, where n is greater than 0
+ {,n}   : at most n repetitions
+ {m,n}  : at least m and at most n repetitions
+
+
+ [^abc] : matches a character that is not a,b or c
+-------------------------------------------------------------------------
+        Regex: 
+
+          "[^dog]"gm
+
+        Will match:
+
+          cat jumped over the 
+
+
+Example - Finding call-outs:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+  import re                                                                       
+                                                                                  
+  text10 = '"Ethics are built right into the ideals and objectives of the United Nations" #UNSG @ NY Society for Ethical Culture bit.ly/2guVelr @UN @UN_Women'
+                                                                                  
+  text11 = text10.split(' ')                                                      
+  # print(text11)                                                                 
+                                                                                  
+                                                                                  
+  for w in text11:                                                                
+    if(re.search('@[A-Za-z0-9_]+', w)):                                           
+    # if(re.search('@\w+', w)):                                                   
+      print(w)
+
+ Find strings starting with @, followed by alpha-numeric and under-score
+ character - both of these represenations yield the same result:
+
+    if(re.search('@[A-Za-z0-9_]+', w)):                                           
+
+    if(re.search('@\w+', w)):                                                   
+
+
+Example - Finding special characters
+
+  '''
+  Objective: find special character - vowels and consonants
+  '''
+  
+  import re
+  
+  text = 'ouagadougou'
+  vowels = re.findall(r'[aeiou]', text)
+  print(f"vowels are: {vowels}")
+  
+  non_vowels = re.findall(r'[^aeiou]', text)
+  print(f"non-vowels are: {non_vowels}")
+
+
+Example - Finding dates in different format:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+  2 digit: month, day
+  2/4 digit: year
+
+
+  '''
+  Objective: find dates of special format
+  '''
+
+  import re                                                                       
+                                                                                  
+  dateStr = '23-10-2020\n23/10/2002\n23/20/02\n10/23/2002\n23 Oct 2002\n23 October 2002\nOct 23, 2002\nOctber 23, 2002\n'
+                                                                                  
+  # Find all dates with four digit year
+  dates1 = re.findall(r'\d{2}[/-]\d{2}[/-]\d{4}', dateStr)                        
+  print(dates1)                                                                   
+  # Prints ['23-10-2020', '23/10/2002', '10/23/2002']
+
+                                                                                  
+  # Find all dates with two or four digit year
+  dates2 = re.findall(r'\d{2}[/-]\d{2}[/-]\d{2,4}', dateStr)                      
+  print(dates2)                                                                   
+  # Prints ['23-10-2020', '23/10/2002', '23/20/02', '10/23/2002']
+
+                                                                                  
+  # Find all dates with two or four digit year, 2 digit month or 2 digit
+  # day
+  dates3 = re.findall(r'\d{1,2}[/-]\d{1,2}[/-]\d{2,4}', dateStr)                  
+  print(dates3)                                                                   
+  # Prints ['23-10-2020', '23/10/2002', '23/20/02', '10/23/2002']
+
+
+  # Find all dates with month spelled out in 3 letters - Jan, Feb, Mar
+  dates3 = re.findall(r'\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}', dateStr)
+  print(dates3)                                                                   
+  # prints Oct
+  ~                    
+
+  # Find all dates with month spelled out in 3 letters - Jan, Feb, Mar            
+  dates4 = re.findall(r'\d{2} (?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* \d{4}', dateStr)
+  print(dates4) 
+  # Prints ['23 Oct 2002', '23 October 2002']
+
+
+  # Find all dates with month spelled out, ending with 4 digit year                
+  dates4 = re.findall(r'(?:\d{2} )?(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]* (?:\d{2}, )?\d{4}', dateStr)
+  print(dates4)  
+
+  # Prints ['23 Oct 2002', '23 October 2002', 'Oct 23, 2002', 'Octber 23, 2002']
+
+
+Pandas Data Frame - text processing
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  
+  
+  import pandas as pd
+  
+  time_sentences = ["Monday: The doctor's appointment is at 2:45pm.", 
+                    "Tuesday: The dentist's appointment is at 11:30 am.",
+                    "Wednesday: At 7:00pm, there is a basketball game!",
+                    "Thursday: Be back home by 11:15 pm at the latest.",
+                    "Friday: Take the train at 08:10 am, arrive at 09:00am."]
+  
+  df = pd.DataFrame(time_sentences, columns=['text'])
+  print(f"Data frame created from text:\n{df}")
+  print("\n")
+  
+  
+  # find the number of characters for each string in df['text']
+  num_chars_in_each_string = df['text'].str.len()
+  print(f"number of characters for each string in df\n{num_chars_in_each_string}")
+  print("\n")
+  
+  # find the number of tokens for each string in df['text']
+  num_tokens_in_each_string = df['text'].str.split().str.len()
+  print(f"number of tokens in each string in df\n{num_tokens_in_each_string}")
+  print("\n")
+  
+  # find which entries contain the word 'appointment'
+  entries_containing_appt = df['text'].str.contains('appointment')
+  print(f"Entries contaning the word appointment: \n{entries_containing_appt}")
+  print("\n")
+  
+  # find how many times a digit occurs in each string
+  num_digits_in_each_string = df['text'].str.count(r'\d')
+  print(f"Number of times digits occur in each string: \n{num_digits_in_each_string}")
+  print("\n")
+  
+  
+  # find all occurances of the digits
+  occurances_of_digit = df['text'].str.findall(r'\d')
+  print(f"Number of occurances of digits: \n{num_digits_in_each_string}")
+  print("\n")
+  
+  
+  # group and find the hours and minutes
+  hours_mins_grouped = df['text'].str.findall(r'(\d?\d):(\d\d)')
+  print(f"Hours and minutes grouped together: \n{hours_mins_grouped}")
+  print("\n")
+  
+  
+  # replace weekdays with '???'
+  week_days_repalced_with_question = df['text'].str.replace(r'\w+day\b', '???')
+  print(f"Weekdays replaced with question mark: \n{week_days_repalced_with_question}")
+  print("\n")
+  
+  
+  # replace weekdays with 3 letter abbrevations
+  weekdays_replace_with_3letter_abbr = df['text'].str.replace(r'(\w+day\b)', lambda x: x.groups()[0][:3])
+  
+  print(f"Weekdays replace with 3 letter abbre: \n{weekdays_replace_with_3letter_abbr}")
+  
+  #
+  # NOTE: here the replacement is provided by a labmda function, where we use groups to
+  #.      construct tuple of the groups, index 0 to get the first, then slice the first
+  #       three letters of the group.
+  
+  
+  # create new columns from first match of extracted groups
+  new_columns_with_matched_digits = df['text'].str.extract(r'(\d?\d):(\d\d)')
+  print(f"New columns with matched digitse: \n{new_columns_with_matched_digits}")
+  
+  #                                                                             
+  # NOTE: here extracting the the hour and minute in new columns
+  # New columns with matched digitse: 
+  #     0   1
+  # 0   2  45
+  # 1  11  30
+  
+  
+  # extract the entire time, the hours, the minutes, and the period
+  df['text'].str.extractall(r'((\d?\d):(\d\d) ?([ap]m))')
+  #                                                                             
+  # NOTE: here extracting the the hour and minute in new columns, then on a 3rd column
+  #       we are extracting the whole time period(am/pm)
+  #  
+  # New columns with matched digits & period: 
+  #              0      1   2   3
+  # match                      
+  # 0 0        2:45pm   2  45  pm
+  # 1 0      11:30 am  11  30  am
+  
+  
+  
+  ''' 
+  # extract the entire time, the hours, the minutes, and the period with group names
+  df['text'].str.extractall(r'(?P<time>(?P<hour>\d?\d):(?P<minute>\d\d) ?(?P<period>[ap]m))')
+
+
+Internationalization and Issues with Non-Ascii Characters:
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+
+
+
+

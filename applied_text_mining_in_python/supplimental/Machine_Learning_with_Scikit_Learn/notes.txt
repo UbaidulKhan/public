@@ -1,0 +1,110 @@
+
+
+Title: Machine Learning with scikit-learn LiveLessons
+URL: https://learning.oreilly.com/home/
+Author/Presenter: David Mertz
+URL: https://learning.oreilly.com/api/v1/continue/9780135474198/
+Date: Feb 26, 2023
+Status: 03:43/12:08 - 1.9 (are correct predictions)
+
++-----------------------------------------------------------------------------+
+
+Section 1.6
+=-=-=-=-=-=-=-
+
+ > Dimensionality Reduction - Dimensionality reduction, or dimension reduction, 
+ is the transformation of data from a high-dimensional space into a 
+ low-dimensional space so that the low-dimensional representation retains 
+ some meaningful properties of the original data, ideally close to its 
+ intrinsic dimension.
+ 
+ Often data collected does not constitute the most useful data when it comes
+ to building a model. Dimensionality reduction attempts to select features 
+ that will be more useful compared to other features.
+ 
+ Sometimes synthetic features can be more useful - these are features derived
+ from the original set of features. Examples of sysnthetic features:
+ 
+  - Number of non-word characters
+	- Length of text
+	- Number of numeric characters
+
+
+ Feature Selection - thousands of features are computationaly intractible.
+ features in the hundreds are more feasible.
+ 
+ 
+ Types of Classification - there are many different types, but here are some:
+ 
+ 
+  - Identifying category - cat, dog, bat
+	
+	- Ordinal Classification - raing for quality of a webinar. Rating ranges 
+	  from 1 to 10. Credit card membership rewards program
+	
+	- Continuous/Quantitative Variable - particular measurement such as 
+	  weather data, height & weight. Measures are taken at particular increments
+		
+		 > Weather data: 
+		 
+		   >> Humidity measured at certain location, 
+		   >> Windspeed measured at certain location, 
+			 >> Temperature
+		
+	
++-----------------------------------------------------------------------------+
+
+Section 1.8
+=-=-=-=-=-=-=
+
+ > One-hot Encoding - Most Machine Learning algorithms cannot work with 
+ categorical data and needs to be converted into numerical data. Sometimes in
+ datasets, we encounter columns that contain categorical features (string 
+ values) for example parameter Gender will have categorical parameters like 
+ Male, Female. 
+ 
+ 
+
+Section 1.9
+=-=-=-=-=-=-=
+
+
+ > Parameters: are configurations of a trained model - weights associated with
+   a specific feature. 
+	 
+	 >> Coefficients of the linear equations
+ 
+ > Hyper-parameters: these are confirgurations we apply to a model, even before
+   we train a model.
+	 
+	 >> Sub-algorithms:
+	 
+			* solver : {‘newton-cg’, ‘lbfgs’, ‘liblinear’, ‘sag’}
+
+			  Algorithm to use in the optimization problem.
+			
+			* multi_class : str, {‘ovr’, ‘multinomial’}
+
+			  Multiclass option can be either ‘ovr’ or ‘multinomial’. If the option 
+				chosen is ‘ovr’, then a binary problem is fit for each label. Else the 
+				loss minimised is the multinomial loss fit across the entire 
+				probability distribution. Works only for the ‘lbfgs’ solver.
+
+ Even for experts, it is difficult to narrow down the most 
+ appropriate/optimized hyper-parameters for a given set of data, for a given
+ model. This is where Grid-search comes into play.
+ 
+ 
+ > Grid-search: is an abstraction provided by Scikit-learn that allows use to 
+   expolore the entire hype-parametric space for a particular data-set and
+	 select the most optimized hyper-parameters. Metrics allows us to measure
+	 the efficacy of our model.
+	 
+	 
++-----------------------------------------------------------------------------+
+
+
+Section 1.10
+=-=-=-=-=-=-=
+
+ > Metrics

@@ -1,0 +1,24 @@
+
+Reference
+=-=-=-=-=-=
+  https://www.educative.io/answers/how-to-use-wordnet-in-python
+	
+*                                                                              *
+
+Wordnet
+=-=-=-=-=-=
+WordNet is an English dictionary which is a part of Natural Language Tool Kit (NLTK) for Python. This is an extensive library built to make Natural Language Processing (NLP) easy. Some basic functions will be discussed in this article. 
+To start using WordNet, you have to import it first:
+
+  <------------------------------------------------------------------
+	 from nltk.corpus import wordnet
+  ------------------------------------------------------------------>s
+
+
+Synsets and Lemmas
+=-=-=-=-=-=-=-=-=-=
+In WordNet, similar words are grouped into a set known as a Synset (short for
+Synonym-set). Every Synset has a name, a part-of-speech, and a number. The words 
+in a Synset are known as Lemmas.
+
+*                                                                              *

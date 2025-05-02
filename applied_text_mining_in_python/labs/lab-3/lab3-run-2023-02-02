@@ -1,0 +1,291 @@
+[H[2J[3JActivating VENV
+Unzipping sample data
+
+Running python script: lab3.py
+
++------------------------------------------------------------
+|  [1m --- load_data --- [0m
++------------------------------------------------------------
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 1 [0m
++------------------------------------------------------------
+|  Number of spam: 747
+|  Total number of entries: 5572
+|  Percentage of spam: 13.406317300789663
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m --- split_training_data --- [0m
++------------------------------------------------------------
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 2 [0m
++------------------------------------------------------------
+|  Longest word is: com1win150ppmx3age16subscription of length 32
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 3 [0m
++------------------------------------------------------------
+| [1m Predictions:  [0 0 0 ... 0 0 0][0m
++------------------------------------------------------------
+|  [1m AUC score is:  0.9537903027319714 [0m
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 4 [0m
++------------------------------------------------------------
+| tfidf_vectorizer data type is: <class 'sklearn.feature_extraction.text.TfidfVectorizer'>
+| X_train_tfidf_vectorizerorized data type is: <class 'scipy.sparse._csr.csr_matrix'>
+| [1m Data type of the tfidf_index <class 'numpy.ndarray'>:[0m
+| [1m Dimensions of the numpy array 1:[0m
+| [1m Shape of the numpy array (7098,):[0m
++------------------------------------------------------------
+| [1m 20 Feature with smallest TF-IDF values:[0m
++------------------------------------------------------------
+|  companion
+|  exterminator
+|  dependable
+|  pudunga
+|  psychologist
+|  pest
+|  organizer
+|  athletic
+|  stylist
+|  determined
+|  sympathetic
+|  venaam
+|  psychiatrist
+|  listener
+|  healer
+|  chef
+|  courageous
+|  aaniye
+|  sankranti
+|  teachers
++------------------------------------------------------------
+| [1m 20 Feature with highest TF-IDF values:[0m
++------------------------------------------------------------
+|  ok
+|  havent
+|  yup
+|  too
+|  lei
+|  where
+|  okie
+|  nite
+|  thanx
+|  done
+|  beerage
+|  thank
+|  anytime
+|  anything
+|  home
+|  645
+|  er
+|  146tf150p
+|  tick
+|  same
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 5 [0m
++------------------------------------------------------------
+|  [1m AUC score is:  0.9425799608546348 [0m
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 6 [0m
++------------------------------------------------------------
+|  Ham text averag lenth: 71.02362694300518
+|  Spam text averag lenth: 138.8661311914324
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+| Duration of answer_six short is: 0:00:00.003899
+
+
++------------------------------------------------------------
+|  [1m Question 6 - lengthy[0m
++------------------------------------------------------------
+|  ham doc total length: 342689
+|  ham doc total count: 4824
+|  spam doc total length: 103733
+|  spam doc total count: 746
+| [1m Ham average length is:  71.03834991708126 [0m
+| [1m Spam average length is:  139.05227882037534 [0m
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+|  Duration of answer_six long is: 0:00:00.203873
+
+
++------------------------------------------------------------
+|  [1m Question 7 [0m
++------------------------------------------------------------
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 1406) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 1407) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 1406) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 1407) [0m
+| [1m AUC Score is:  0.9653405295172462 [0m
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 8 [0m
++------------------------------------------------------------
+|  Ham average digits: 0.2992746113989637
+|  Spam average digits: 15.759036144578314
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 9 [0m
++------------------------------------------------------------
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 3077) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 3078) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 3078) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 3079) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 3077) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 3078) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 3078) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 3079) [0m
+|  AUC score: 0.9688448601197801
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 10 [0m
++------------------------------------------------------------
+|  Average non-alphanumeric in spam: 29.041499330655956
+|  Average non-alphanumeric in ham: 17.29181347150259
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
++------------------------------------------------------------
+|  [1m Question 11 [0m
++------------------------------------------------------------
+| [1m Vectorizing Training Data [0m
+| [1m Vectorizer shape(rows/columns): (3900, 15569) tokens [0m 
+|  sub::feature_extractor starting
+|  series_data data type is: <class 'pandas.core.series.Series'>
+|  nameof(feature) is of type: <class 'list'>
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 15569) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 15570) [0m
+|  nameof(feature) is of type: <class 'list'>
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 15570) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 15571) [0m
+|  nameof(feature) is of type: <class 'list'>
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (3900, 15571) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (3900, 15572) [0m
+| [1m Vectorizing Testing Data [0m
+|  sub::feature_extractor starting
+|  series_data data type is: <class 'pandas.core.series.Series'>
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 15569) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 15570) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 15570) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 15571) [0m
+
+
++------------------------------------------------------------
+|  [1m add_feature [0m
++------------------------------------------------------------
+|  Adding feature feature_to_add to X
++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+|  [1m X shape(rows/columns) before modification is: (1672, 15571) [0m
+|  [1m X_modified shape(rows/columns) after modification is: (1672, 15572) [0m

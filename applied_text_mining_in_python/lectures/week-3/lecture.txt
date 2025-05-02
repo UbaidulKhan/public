@@ -1,0 +1,806 @@
+
+Progress: 4:53 (Identifying Features from Text)
+Date: Sep 22, 2022
+Status:
+  Slide - Baye's Rule
+	4:34/19:04
+*                                                                              *
+
+
+Text Classification - classifying text into categories. How are texts 
+classified into categories?  What is classification?
+
+We are given a set of categories/classes, then task is to assign the correct 
+label to a given text. Example, classify news as:
+
+> Politics
+> Sports
+> Technology
+
+*                                                                              *
+
+Spelling correction: Weather or whether??
+
+Supervised Classification/Learning
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+This machine learning method consists of:
+
+ > Phases - Training/Inference
+ > Classification Model
+ > Data Sets - training, validation 
+
+Inference is made based on past instances - labeled date.  During the training 
+phase, information is gathered and a model is built. During the inference 
+phrase, that modelis applied.
+ 
+ Training Phase
+ ---------------
+ Labeled Input: Green/Red, Positive/Negative.  This labeled data is fed into 
+ a classification algorithm. This algorithm will learn which instances are 
+ postive than negtive, then it builds a model from what it learned. During the   
+ inference phrase, the classification algorithm, takes unlabeled data as input,  
+ applies the model and will associate a label for the unlabeled data. Both of
+ the following exits:
+ 
+   X = {x1, x2, x3, x4,......,xn}
+   Y = {y1, y2, y3, y4,......,yn}
+
+*                                                                              *
+ Inference Phase
+ ---------------
+ After a model has been built from the training phrase, it can be used during
+ the inference phase to correctly label unlabeled/unclassified data. Labels are
+ generated for unlabled data.
+ 
+  X = {x1, x2, x3, x4,......,xn}
+  Y = {}
+ 
+ We striving the generate the set Y.
+ 
+ Classified Model
+ -----------------
+ Classification model consists: 
+ 
+  * Features/Properties
+	* Weights associated with the Features
+	
+ These(Features and Weights) are learned during the training phase from the
+ labeled data. The set of features/properties are denoted as X:
+ 
+  X = {x1, x2, x3, x4, x5,....,xn}
+	
+	X is called a feature vector.
+ 
+ Example - classify email as:
+
+ > Spam
+ > Ham
+ 
+ X = {sender=gmil.com, content=prince, content=nigeria, content=deposit,
+     content=bank-account}
+		 
+ Y = A classification label set {y1, y2, y3, y4,......,yk}. Following are
+ examples of sets of different sets of Y:
+  
+ with Y = 2:
+ 
+   = {spam, ham}
+	 
+	 = {positive, negative}
+
+ 
+ Data Sets
+ ---------
+  X = {x1, x2, x3, x4,......,xn}
+  Y = {y1, y2, y3, y4,......,yn}
+	
+	Training Phase 
+	--------------
+	Data Set is split into two groups:
+	
+	 > Part of the data is used for training
+ 
+	 > Part of the data is used for validation to measure how accurate the
+	   model was. Adjust parameters based on this data set.
+ 
+*                                                                              *
+
+ Classification Paradigms
+ ------------------------ 
+  Binary classifcation - where label size is 2. |Y| = 2
+	
+	 {spam, ham}
+	 {positive, negative}
+
+  Multi-class classifcation - where label size is greater than 2. |Y| > 2
+
+	 {positive, negative, negative}
+
+  Multi-label classifcation
+
+	 {{positive, negative, negative}, {spam, ham}} 
+	 
+*                                                                              *
+	 
+ Questions to ask in Supervised Learning:
+ ----------------------------------------
+  
+	Training Phrase
+	----------------
+  > What are the features, how do you represent them?
+  > What is the classification model/algorithm?	 
+  > What are the model parameters?
+ 
+  
+	Inference Phrase
+	----------------
+  > What is the expected performance? What is a good measure?
+
+
+Feature Identification
+----------------------
+ How do you identify features from text? Text data presents challenges.  
+ Basic constructs:
+ 
+  Types of Textual Features
+  --------------------------
+  Words: 40,000 unique words each represents a feature
+	
+	 > How do you handle commonly-occuring words aka stop-words, such as:
+	
+	  *the*
+
+   Normalization - do you convert all words to lower-case? 
+   --------------------------
+    US vs us, here US is United States. 
+	 
+*                                                                              *
+	 
+   Capitalization - do you convert all words to lower-case? 
+   --------------------------
+    US vs us, here US is United States. 
+		
+	  White House vs white house. White House is very different than 
+		white house	 		 
+	 
+   Stemming and Lemmmatization 
+   ----------------------------
+    Assume you do not want plurals. Example:
+	  
+		cats vs. cat
+		
+    So do  you lemmatize them or stem them?
+
+	 
+    POS - Parts of Speech: 
+   -------------------------- 
+    A determiner can make difference. Consider the following spelling 
+    correction:
+		
+		  Misspelled word/excerpt: The wheather 
+			Suggestions: weather or whether
+ 
+    If there was a determiner(the) in front, then it is likely:
+		
+		  The weather
+ 
+
+    Grammatical Structure: 
+   -------------------------- 
+    Sentence parsing may be required to :
+		
+		 1) Undersetand verb associated with a particular non. 
+		 2) How far a verb is from the associated non
+*                                                                              *
+
+    Group words  
+   -------------
+	  1) Of same/similar meaning to represent one feature
+		2) Honorifics - Mr./Ms./Dr./Prof., etc
+		3) Numbers 0 - 10,000 can be boiled down to one feature - number
+		4) Dates  - summarize all dates as a single date.
+		5) Word sequences - features can from inside words or word sequence:
+		
+		   bigrams: "White House"
+			 
+		6) Character subsequences in words
+		
+		   ing: verb
+			 ion: noun - collection, adjudication, 
+
+			 
+Naive Bayes Classifiers
+-+-+-+-+-+-+-+-+-+-+-+-+
+Consdier the scenario - suppose you are interested in classifying search 
+queries into three classes/labels:
+*                                                                              *
+ 
+   > computer science 
+	 > zoology 
+	 > entertainment - most queries are of this class [higher weigh]
+
+ - We are given the word "Python" to calssify
+ 
+   > If the snake Python is meant, then its (Zoology) - most likely if no other
+	   word is specified with Python.
+		 
+	 > If Python the programming language is meant, then its (Computer Science)
+	 
+	 > If Python as in Monty Python, then its (Entertainment)
+
+ - We are given the sequence "Python download" to calssify
+ 
+	 > Computer Science
+
+ Naive Bayes Classifier:
+ ------------------------
+  > Pr(Prior Probability) - prior belief that the label belonged to 
+	  entertainment or computer science or zoology:
+		
+		P(entertainment) = 1/3     MORE LIKELY - biased from onset
+		P(cs)            = 1/3
+		P(zoology)       = 1/3
+*                                                                              *
+		
+		Total: 1/3 + 1/3 + 1/3 = (1+1+1)/3 = 1
+		
+		Prior Probability - Pr:
+		-----------------------
+		
+		  Pr(y=Entertainment), 
+			Pr(y=CS)
+			Pr(y=Zoology)
+		
+		Example:
+		  
+			Pr(y=Entertainment | x = "Python") - reads as probablity of Entertainment
+			given the search query is Python
+			 
+		    Probably given search query     |  Probability Likelyhood
+		------------------------------------+-------------------------
+		 Pr(y=CS | x = "Python")            | High
+		------------------------------------+-------------------------
+		 Pr(y=Entertainment | x = "Python") | Lower
+		------------------------------------+-------------------------
+		 Pr(y=Zoology | x = "Python")       | Higher
+		------------------------------------+-------------------------
+*                                                                              *
+
+
+ Conditional Probability
+ ------------------------
+  A  measure of the probability of an event occurring, given that another event 
+	(by assumption, presumption, assertion or evidence) has already occurred.
+	
+	Example: 
+	
+	 Probability a that any given person has cough on any given day - 5%
+	 Probability a sick person is likely to cough is 75%:
+	 
+	 P(cough) = 5%
+	 P(cough|sick) = 75%
+	 
+	 P(A|B) = P(A intersact B) / P(B)
+	
+	Example: 
+	
+	  if a person has dengue fever, likelyhood of positive test result: 90%
+		What is being measured is that if event B (having dengue) has occurred, 
+		The probability of event A (tested as positive) given that B occurred is 
+		90%, 
+			
+			Simply writing P(A|B) = 90%. 
+		
+	  > Alternatively, if a person is tested as positive for dengue fever, they 
+		  may have only a 15% chance of actually having this rare disease due to 
+			high false positive rate
+	 	
+*                                                                              *
+	
+	Example: 
+	
+	  Suppose you are drawing three marbles—red, blue, and green—from a bag. 
+		Each marble has an equal chance of being drawn. What is the conditional 
+		probability of drawing the red marble after already drawing the blue one?
+		
+	  > The probability of drawing a blue marble is about 33% because it is 
+		  one possible outcome out of three
+		
+	  > Assuming this first event occurs, there will be two marbles remaining, 
+		  with each having a 50% chance of being drawn
+		
+		Event A: drawing a Blue marble
+		Event B: drawing a Red marble
+		
+		P(A) ~ 33%
+		P(B) = 50%
+		
+		P(A|B) = 0.33 * .50 = 0.165 = 16.5%			
+
+*                                                                              *
+			
+ Bayes' Rule/Theorem
+ --------------------
+  Conditional Probablity - new evidence should not completely determine your
+	beliefs in a vacuum; it should update prior beliefs.
+	
+	The theorem provides a way to revise existing predictions or theories 
+	(update probabilities) given new or additional evidence
+	
+	Bayes' theorem relies on incorporating prior probability distributions
+	in order to generate posterior probabilities.
+	
+  
+	P(A∣B) = P(A⋂B) / P(B)
+	       = P(A) * P(B∣A) / P(B)
+	
+	where:
+	
+	 P(A)= The probability of A occurring
+	 P(B)= The probability of B occurring
+	 P(A∣B)=The probability of A given B
+	 P(B∣A)= The probability of B given A
+	 P(A⋂B))= The probability of both A and B occurring
+	​
+
+	
+  Posterior Probablity = ((Prior Probability) x (Likelihood)) / (Evidence)
+	
+	Pr(y|X) = (Pr(y) x Pr(X|y)) / Pr(X)
+	
+	Example(Vydiswaran)
+	-------------------
+	You are training a naïve Bayes classifier, where the number of possible 
+	labels, |Y| = 3 and the dimension of the data element, |X| = 100, where 
+	every feature (dimension) is binary. How many parameters does the naïve 
+	Bayes classification model have?
+	
+	  Labels  = |Y| = 3
+		Queries = |X| = 100
+	
+	Answer: 
+
+		|Y| +  2 x |X| + x|Y| = 603
+	
+	Note that not all of these features are independent. In particular, 
+	Pr(x_i = 0 | y) = 1 - Pr(x_i = 1 | y), for every x_i and y. So, there are only 
+	300 independent parameters of this kind (as the other 300 parameters are just 
+	complements of these). Similarly, the sum of all prior probabilities Pr(y) 
+	should be 1. This means there are only 2 independent prior probabilities. 
+	In all, for this example, there are 302 independent parameters.
+	
+*                                                                              *
+
+ Naive Bayes Variations 
+ -----------------------
+ 
+  Multinomial Naïve Bayes model:
+	-------------------------------
+	
+	 > Each feature in the feature vector are independent
+	 
+	 > Each feature can have multiple occurances
+	 
+	 > We have to count total occurances of each feature
+	 
+	 > TF-IDF - calculate the term frequency–inverse document frequencyTF-IDF of 
+	   a word. The tf–idf value increases proportionally to the number of times 
+		 a word appears in the document and is offset by the number of documents in 
+		 the corpus that contain the word, which helps to adjust for the fact that 
+		 some words appear more frequently in general. tf–idf is one of the most 
+		 popular term-weighting schemes today.
+	   
+		 
+  Bernoulli Naïve Bayes model:
+	-------------------------------
+	
+	 > Each feature is either present or absent
+	 
+	 > Frequence of the feature is not relevant - does not matter how many 
+	   times a feature appears.
+		 
+	 > Features do not have more/less significance.	
+	
+	When working with text documents it is very common to use Multinomial 
+	Naïve Bayes model. But there are circumstances when Bernoulli Naïve Bayes 
+	model is preferred.
+		 
+*                                                                              *
+		 
+Support Vector Machines
+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+  Status: Week-3 > Support Vector Machines 24/24
+	
+	Support Vector Machines mpas the training to points in space so as to 
+	maximise the width fo the gap between the two categories. New data is then
+	mapped to the same space and predicted to belong to a category based on
+	which side of the gap they fall.
+	
+	
+	Support Vector Machines are maximum-margin classifier	
+	
+	SVM are linear classifiers that find a hyperplane to separate two classes 
+	of data: positive and negative
+	
+	Given training data (X1,Y1), (X2,Y2)....(Xi,Yi) where Xi is instance 
+	vector and Yi is one of {-1,+1}
+	
+	SVM finds a linear function w(weight vector), such that:
+	
+	  f(Xi) = < W * Xi > +b    // Dot product w/ B is a bias term
+		if f(Xi) >_ 0, Yi = +1; else Yi = -1
+	
+*                                                                              *
+
+Learning Text Classifiers in Python
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+ Scikit-learn:
+   
+	- Open-source Machine Learning library
+	- Provides robust API
+	- Provides classifiers:
+	  - Naive Bayes Classifier
+		- Support Vector Classifier
+	
+	  Naive Bayes Classifier Setup - Python Code
+		-------------------------------------------
+		
+		from sklearn import naive_bayes
+
+		# Create a base calssifier
+		classifier_NB = naive_bayes.MultinomialNB() 
+
+		# Train the classifier with training data
+		classifier_NB.fit(train_data, train_labels) 
+		
+		# Predict labels for new dataset		
+		predicted_lables = classifier_NB.predict(test_data) 
+
+		# Benchmark the classification - averaging: micro/macro
+		metrics.f1_score(test_labels, predicted_labels, average='micro') 
+		
+		# References: 
+		https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html
+
+		
+	  Naive Bayes Classifier Setup - Python Code
+		-------------------------------------------
+		
+		from sklearn import svm
+
+		# Create a svc calssifier, C is the soft-margin parameter
+		# Default value for kernel is RBF and C is 1.
+		classifier_SVM = svm.SVC(kernel='linear', C=0.1)
+		
+		# Train the classifier
+		classifier_SVM.fit(train_data, train_labels)
+		
+		# Predict labels for new data
+		predicted_lables = classifier_SVM.predict(test_data)	
+		
+		# Predict labels for new data
+		predicted_lables = classifier_SVM.predict(test_data)
+		
+		# Benchmark the classification - averaging: micro/macro
+		metrics.f1_score(test_labels, predicted_labels, average='micro') 
+			
+
+*                                                                              *
+	
+	  Model Selection in Scikit-learn
+		-------------------------------------------
+		Model Selection Problem - is the process of selecting a statistical model
+		from a set of candidate models, given a data set. According to Occam's 
+		Razor - given a set of candidate models of similar predictive or 
+		explanatory power, the simplest model is likely to be the best choice.
+		
+		Supervised learning has several phases and associated data sets:
+		
+		                     /---- Training Data Set
+		                    /
+		 Labeled Data Set -|
+		                    \		 
+		                     \---- Validation("Hold Out") Data Set
+												 
+								
+		So the labeled data needs to be split-up appropriately support both
+		phases of training and validation. Model selection can be performed
+		in one of two ways:
+		
+		 1) Keeping/holding-out some part of the training data set for 
+		    validation.
+				
+		 2) Cross-validation - 
+*                                                                              *
+		 
+
+		1) Keeping/holding-out method
+		--------------------------------
+		 
+		 Data Representation:
+		 
+		 
+		  |<------------- TRAINING -------------> | <-- VALIDATION -->|                                                            |
+		  [+] [-] [+] [+] [-] [+] [+] [-] [+] [-] | [-] [+] [-] [+] [-]
+		                                          |
+		
+		 Python Code for Model Selection
+		 --------------------------------
+		  # following will provide options for model selection
+		  from sklearn import model_selection
+		 
+		  x_train, X_test, y_train, y_test = model_selection.train_test_split(
+		   train_data, tain_labels, test_size=0.333, random_state=0)
+		
+		  Here the test size is: 1/3 or 0.333
+		 
+		  Example:
+		  --------- 
+		   Data set contains 15 labeled segments
+			 10 segements are dedicated to training phase = 10/16 = 66%
+			 5 segments are dedicated to test validation  = 5/15  = 33%
+
+*                                                                              *
+
+
+		2) Cross-validation method
+		--------------------------------
+		 Five fold cross validation - data is plit into five parts, called folds
+		 
+		 
+		              |             |             |             |
+		  [+] [-] [+] | [+] [-] [+] | [+] [-] [+] | [-] [-] [+] | [-] [+] [-]
+		        1     |      2      |      3      |      4      |      5
+		
+		 Python Code for Model Selection
+		 --------------------------------		  
+		 
+		  # following will provide options for model selection
+		  from sklearn import model_selection
+		 
+		  x_train, X_test, y_train, y_test = model_selection.train_test_split(
+		   train_data, tain_labels, test_size=0.333, random_state=0)
+			
+			predicted_labels = model_selection.cross_val_predict(clfrSVM, 
+			  train_data, train_labels, cv=5)
+			
+			  Runs | Train segments | Validation segments
+			-------+----------------+--------------------
+			   1   |   1 - 4        |  5
+			-------+----------------+--------------------
+			   2   |   2 - 5        |  1
+			-------+----------------+--------------------
+			   3   |   3 - 5,1      |  2
+			-------+----------------+--------------------
+			   4   |   4,5,1,2      |  3
+			-------+----------------+--------------------
+			   5   |   5,1,2,3      |  4
+			-------+----------------+--------------------
+			
+*                                                                              *
+
+Supervised Text Classification in NLTK
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+ NLTK has some classificatin algorithms:
+ 
+  - NaiveBayesClassifier
+	- DecisionTreeClassifier
+	- ConditionalExponentialClassifier
+	- MaxentClassifier
+	
+  Following classifiers can call the underlying scikit-learn classifiers:
+ 
+	- WekaClassifier
+	- SklearnClassifier
+	
+	
+	  Naive Bayes Classifier Setup - Python Code
+		-------------------------------------------
+		
+		from nltk.classify import NaiveBayesClassifier
+
+		# Create a calssifier and train on the training data
+		classifier = NaiveBayesClassifier.trai(train_set)
+		
+		# Classify using the classify function on one instance
+		classifier.classify(unlabeled_instance)
+*                                                                              *
+
+		# Classify using the classify function on a set of unlabeled instances
+		classifier.classify_many(unlabeled_instances)	
+		
+		# Calculate the accuracy/performance of the classifier
+		nltk.classify.util.accuracy(classifier, test_set)
+		
+		# Get a list of labels this claissifier has trained on
+		classifier.labels()
+		
+		# Retrieve top features - top 5 or 10 that are most informative to the
+		# classification task - especially useful in naive bayes classifier as it
+		# shows the most informative features
+		classifier.show_most_informative_features()
+		
+	  SVM Classifier Setup - Python Code
+		-------------------------------------------
+		
+		from nltk.classify import	SklearnClassifier
+		from sklearn.naive_bayes import MultinomialNB
+		from sklearn.svm import SVC
+		
+		classifier_NaiveBayes = SklearnClassifier(MultinomialNV()).train(
+		 train_set)
+
+		classifier_SVM = SklearnClassifier(SVC(),kernel='linear').train(
+		 train_set)
+		
+*                                                                              *
+
+Document Term Matrix
+-+-+-+-+-+-+-+-+-+-+-+
+
+ A document-term matrix or term-document matrix is a mathematical matrix that 
+ describes the frequency of terms that occur in a collection of documents. This 
+ is a matrix where:
+
+  - Each row represents one document
+
+  - Each column represents one term (word)
+
+
+Bag of Words
+-+-+-+-+-+-+
+ Bag-of-words model is a numerical representation(numerical feature vectors) 
+ of a text. In this model, a text such as a sentence of a document is converted 
+ into fixed-length vectors by counting how many times each word appears. This 
+ process is often referred to as vectorization. 
+ 
+ 
+ References:
+ 
+   https://vitalflux.com/text-classification-bag-of-words-model-python-sklearn/
+ 	 
+	 https://www.youtube.com/watch?v=irzVuSO8o4g&t=1s
+	 
+
+ There are several steps in constructing a bag-of-words model:
+ 
+  1) Identify each unique word(token) from all the documents. Then create a 
+	   sparse matrix from these tokens and tally-up the occurances of each
+		 token.
+		 
+		 This matrix is called sparse bercause majority of the elements in the 
+		 matrix has zero values whereas, a matrix is dense if the majority of 
+		 the elements in the matrix has non zero values.
+	
+	2) Encode the matrix, so the tokens(words) have a numerical representation.
+	
+
+ Bag-of-words represenations for the the two following sentences:
+ 
+ 
+ d-1/bow-1: "A quick brown fox jumps over a lazy dog. What a fox!" 
+
+ d-2/bow-2:	"A quick brown fox jumps over a lazy fox. What a fox!" 
+  
+ 
+ Step-1: construct the sparse matrix
+
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+  | doc | a | brown | dog | fox | jumps | lazy | over | quick | over | what |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+	|  1  | 3 |   1   |  1  |  2  |   1   |  1   |  1   |   1   |   1  |   1  |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+	|  2  | 3 |   1   |  1  |  3  |   1   |  1   |  1   |   1   |   1  |   1  |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+   
+*                                                                              *
+
+ 
+ Step-2: encode the sparse matrix
+ 
+
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+  | doc | 0 |   1   |  2  |  3  |   4   |   5  |   6  |   7   |   8  |   9  |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+	|  1  | 3 |   1   |  1  |  2  |   1   |  1   |  1   |   1   |   1  |   1  |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+	|  2  | 3 |   1   |  1  |  3  |   1   |  1   |  1   |   1   |   1  |   1  |
+	+-----+---+-------+-----+-----+-------+------+------+-------+------+------+ 
+
+ References:
+ -----------
+   https://vitalflux.com/text-classification-bag-of-words-model-python-sklearn/
+	 
+
+  Code Implementation:
+  ---------------------
+   https://tinyurl.com/28rcuzbr  
+	 https://tinyurl.com/bdcs6p9s
+	 
+	 
+
+Term Frequency - Inverse Document Frequency(TF-IDF)
+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+ In information retrieval, tf–idf, short for term frequency–inverse document
+ frequency, is a numerical statistic that is intended to reflect how important 
+ a word is to a document in a collection or corpus. It is often used as a 
+ weighting factor in searches of information retrieval, text mining, and user 
+ modeling. Mathematical represenation of TF-IDF:
+ 
+   TFIDF(t, d) = TF(t,d) x IDF(t)
+	 
+	- TF value is specific to a single document d. This is the term frequency
+	  of a given term in document d.
+	
+	- IDF value is dependent on the entire corpus. Constant per corpus, and
+	  accounts for the ratio of documents that include that specific "term" 
+		in question.
+
+  Concepts:
+	
+	  - We have a set of documents(D), consisting of d-1 and d-2
+		
+		- How relevent is the word Fox, given the corpus D documents(d1, d2)?
+		
+		- We must calculate TF-IDF to answer the question of relevance for the 
+		  term - fox.
+			
+			Answer: since TF-IDF(fox) = 0, it has a low relevancy score
+			
+
+ References:
+ 
+   https://www.youtube.com/watch?v=vZAXpvHhQow&t=248s
+ 
+*                                                                              *
+ 
+  d-1:
+ 
+   "A quick brown fox jumps over a lazy dog. What a fox!"
+	 
+	  - Number of words: 12 
+
+  d-2:	 
+
+   "A quick brown fox jumps over a lazy fox. What a fox!"
+	 
+	  - Number of words: 12 
+ 
+ 	
+
+ | Token |Bow | Bow | TF-1 | TF-2 | IDF          | TF-IDF | TF-IDF |
+ |       | d1 |  d2 |      |      |              |  (d1)  |  (d2)  |
+ +-------+----+-----+------+------+--------------+--------+--------+ 
+ |  a    | 3  |  3  | 3/12 | 3/12 | log(2/2)=0   |0=3/12*0|0=3/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ | quick | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ | brown | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ |  fox  | 2  |   3 | 2/12 | 3/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ |  over | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ | jumps | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+ 
+ | lazy  | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+  
+ | what  | 1  |   1 | 1/12 | 1/12 | log(2/2)=0   |0=1/12*0|0=1/12*0|
+ +-------+----+-----+------+------+--------------+-----------------+  
+ | dog   | 1  |   0 | 1/12 | 0/12 | log(1/2)=-.03|-0.0250 |-0.0250 | <<< ?? >>>
+ +-------+----+-----+------+------+--------------+-----------------+  
+*                                                                              *
+
+	 - TF-1: is the term frequence for the document d-1
+	 - TF-2: is the term frequence for the document d-2
+	 
+	 - IDF("fox", D) = log(number of documents in which the word fox appears / 
+	                       total number of documents in the corpus)
+												 
+									 = log(2/2) = log(1) = 0
+
+
+				

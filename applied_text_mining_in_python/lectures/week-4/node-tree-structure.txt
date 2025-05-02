@@ -1,0 +1,38 @@
+
+
+
+                   ungulate
+                   /       \
+                  /         \
+                 /           \
+                /             \
+               /               \
+              /                 \
+   even-toed ungulate     odd-toed ungulate
+             /                    \
+            /                      \
+           /                        \
+          /                          \
+         /                            \
+        /                              \
+     ruminant                        equine
+		   /|\                             /|\
+      / | \                           / | \
+     /  |  \                         /  |  \
+    /   |   \                       /   |   \
+   /    |    \                     /    |    \
+  /     |     \                   /     |     \
+okapi   |    giraffe           mule   horse  zebra
+        |                               |                     
+       deer                             |
+       /|\                              |
+      / | \                             |
+     /  |  \                            |
+    /   |   \                           | 
+   /    |    \                          |
+  /     |     \                         |
+ elk  wapiti  caribou                 pony
+ 
+ 
+ 
+ 

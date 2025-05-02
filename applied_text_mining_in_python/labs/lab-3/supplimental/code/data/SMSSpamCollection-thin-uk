@@ -1,0 +1,10 @@
+target	text
+ham	"vlad the impaler had been preaching his gospel without success"
+ham	"the house had a tiny little mouse", 
+spam	"the cat saw the mouse", 
+ham	"the mouse ran away from the house", 
+spam	"the cat finally ate the mouse", 
+ham	"the end of the mouse story"
+ham	"not quiet the end of the mouse story"
+spam	"the mouse was born again as a vampire"
+spam	"the mouse started preaching the gospel of vlad"

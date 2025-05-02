@@ -1,0 +1,156 @@
+	Baye's Rule in Examples
+	************************
+	
+	Example(StatQuest with Josh Starmer)
+	------------------------------------	
+	URL: https://www.youtube.com/watch?v=O2L2Uv9pdDA
+	
+	
+	
+	 Table-1: SPAM/HAM classification 
+	 --------------------------------
+	  Compiled during training training phase:
+	
+	   Eamil type        Size        Label     Probability/Likelyhood
+		--------------    --------    -------   -------------------------
+		  HAM Emails        8            H       8/12 = 0.67
+		  SPAM Emails       4            S       4/12 = 0.33
+	
+	
+	Training data has the following feature distribution:
+	
+	1) Create a histogram of all words that occur in normal(HAM) messages:
+	
+	 Table-2: HAM Feature distribution
+	 ----------------------------------
+	  Compiled during training training phase:
+	 
+	
+	  Word           Occurance         Probability/Likelyhood
+		--------       ----------       ---------------------------
+	   Dear              8              8/17 = 0.47
+		 Friend            5              5/17 = 0.29
+		 Lunch             3              3/17 = 0.178
+		 Money             1              1/7 = 0.059
+		-------------------------------------------------------------
+		 Total:           17               1
+		
+		P(Dear|Normal) = 8/17 = 0.47
+*                                                                              *
+
+	
+	2) Create a histogram of all words that occur in SPAM messages:
+
+	 Table-3: SPAM Feature distribution
+	 ----------------------------------
+	  Compiled during training training phase:
+	
+	  Word           Occurance         Probability/Likelyhood
+		--------       ----------       ---------------------------
+	   Dear              2              2/7 = 0.28
+		 Friend            1              1/7 = 0.14
+		 Lunch             0              0/7 = 0
+		 Money             4              4/7 = 0.571
+		-------------------------------------------------------------
+		 Total:            7               1
+		 
+	------
+	
+	Classify/Label - Label a message that contains "Dear friend."  We start 
+	with the initial guess that any message is HAM and calculate the likely hood
+	by applying bayesian inference. 
+	
+	  "Dear Friend" - is the message we have to classify
+		
+		Initial Guess/Probability of the message being HAM: 8/12
+	 
+	  P(H | "Dear Friend") = P(H) * P(Dear|H) * P(Friend|H)
+		
+		     = 0.67 x 0.47 * 0.29 = 0.091
+	 
+	 
+	  P(S | "Dear Friend") = P(S) * P(Dear|S) * P(Friend|S)
+		
+		     = 0.33 x 0.28 * 0.14 = 0.012936
+		
+		Conclusion: P(H | "Dear Friend") > P(S | "Dear Friend")
+		
+		              0.091 > 0.012
+								
+		With HAM score(0.091) being higher than SPAM score(0.012), we will say 
+		the message is HAM.
+		
+	------
+		
+	  "Lunch Money Money Money Money" - is the message we have to classify
+		
+		Assumption is that this message is SPAM, since Money has higher probability 
+		to be in a SPAM message:
+		
+	  P(H | "Lunch Money Money Money Money") = P(H) * P(Lunch|H) * P(Money|H) 
+		                                         * P(Money|H) * P(Money|H) 
+																						 * P(Money|H)
+		 
+		                                       = 0.67 * 0.178 * (0.059)^4
+																					 = 0.000002
+
+	  P(S | "Lunch Money Money Money Money") = P(S) * P(Lunch|S) * P(Money|S) 
+		                                         * P(Money|S) * P(Money|S) 
+																						 * P(Money|S)
+																						 
+		                                       = 0.33 * 0 * (0.571)^4 
+																					 = 0
+																					 
+	  The probability is skewed because our training data did not contain 
+		the token Lunch in the spam set. To RESOLVE this, we should set the 
+		count of Lunch to 1, this changes distribution for each feature:
+		
+ 	 Update the histogram of all words that occur in SPAM messages:
+
+ 	 Table-4: HAM Feature distribution
+ 	 ----------------------------------
+	
+	  Word           Occurance         Probability/Likelyhood
+		--------       ----------       ---------------------------
+	   Dear              9              9/21 = 0.43
+		 Friend            6              6/21 = 0.28
+		 Lunch             4              4/21 = 0.19
+		 Money             2              2/21 = 0.095
+		-------------------------------------------------------------
+		 Total:           21                       1
+		
+*                                                                              *
+	
+	 Update the histogram of all words that occur in SPAM messages:
+
+	 Table-5: SPAM Feature distribution
+	 ----------------------------------
+	  Compiled during training training phase:
+	
+	  Word           Occurance         Probability/Likelyhood
+		--------       ----------       ---------------------------
+	   Dear              3              3/11 = 0.27
+		 Friend            2              2/11 = 0.18
+		 Lunch             1              1/11 = 0.09
+		 Money             5              5/11 = 0.45
+		-------------------------------------------------------------
+		 Total:            11                      1
+		 
+		 		
+	  P(H | "Lunch Money Money Money Money") = P(H) * P(Lunch|H) * P(Money|H) 
+		                                         * P(Money|H) * P(Money|H) 
+																						 * P(Money|H)
+		 
+		                                       = 0.67 * 0.19 * (0.095)^4
+																					 = 0.000010368664562
+
+	  P(S | "Lunch Money Money Money Money") = P(S) * P(Lunch|S) * P(Money|S) 
+		                                         * P(Money|S) * P(Money|S) 
+																						 * P(Money|S)
+																						 
+		                                       = 0.33 * 1 * (0.45)^4 
+																					 = 0.014087152516905
+		
+		P(S) > P(H)
+		
+		0.014087152516905 > 0.000010368664562

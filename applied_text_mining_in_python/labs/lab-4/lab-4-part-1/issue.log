@@ -1,0 +1,57 @@
+
+Document Similarity & Topic Modelling:
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+Key-word: scikit-learn tf-idf toarray
+
+
+***
+		
+https://melaniewalsh.github.io/Intro-Cultural-Analytics/05-Text-Analysis/03-TF-IDF-Scikit-Learn.html 
+		
+ https://notebook.community/voxlol/pattern_classification/machine_learning/scikit-learn/tfidf_scikit-learn		
+***
+	
+https://stackoverflow.com/questions/54562820/meaning-of-tfidfvectorizer-toarray-and-hashingvectorizer
+
+https://buhrmann.github.io/tfidf-analysis.html
+
+
+ISSUES
+=-=-=-=
+
+ PyCallGraph Error:
+ 
+	Collecting pycallgraph
+	  Using cached pycallgraph-1.0.1.tar.gz (36 kB)
+	  Preparing metadata (setup.py) ... error
+	  error: subprocess-exited-with-error
+  
+	  × python setup.py egg_info did not run successfully.
+	  │ exit code: 1
+	  ╰─> [1 lines of output]
+	      error in pycallgraph setup command: use_2to3 is invalid.
+	      [end of output]
+  
+	  note: This error originates from a subprocess, and is likely not a problem with pip.
+	error: metadata-generation-failed
+
+	× Encountered error while generating package metadata.
+	╰─> See above for output.
+
+	note: This is an issue with the package mentioned above, not pip.
+	hint: See above for details.
+
+	
+ SOLUTION: 
+ =-=-=-=-=
+   Downgrade sertuptools:
+	 
+	 setuptools>=58 breaks support for use_2to3:
+
+	 setuptools changelog for v58
+
+	 So you should update setuptools to setuptools<58 or avoid using packages with use_2to3 
+	 in the setup parameters.
+
+	 I was having the same problem, pip==19.3.1

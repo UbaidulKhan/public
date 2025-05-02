@@ -1,0 +1,21 @@
+
+  
+NOTES:
+
+--2023-06-27 :: synset issue with 'Ms'
+
+ Issues with salutation was noticed with 'Ms' wn.synsets returned:
+ 
+   Synset('multiple_sclerosis.n.01') 
+	
+ This indicates that we should purge all stop words from the document
+ prior to performing synset lookup.
+ 
+ 
+ TO DO:
+ 
+   Combined data-frame column header too wide, google:
+	 
+	   "pandas dataframe set column header  wrapping"
+		 
+		 https://stackoverflow.com/questions/45883201/how-to-limit-width-of-column-headers-in-pandas
